@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>On Tour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4EFE6; --card:#FFFDF9; --ink:#1B1A22; --muted:#625F6B; --line:#E2DACB;
+  --in:#2D55E8; --on:#E0512A; --at:#0E8F63; --gold:#F2B705;
+  --ok:#0E8F63; --no:#C2352B;
+  --f-head:"Anton",Impact,"Arial Narrow",sans-serif;
+  --f-body:"Work Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"Space Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:19px;line-height:1.5;padding:0 16px 80px;--c:var(--ink)}
+.wrap{max-width:1080px;margin:0 auto}
+h1,h2,h3{margin:0;font-weight:400}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--in);outline-offset:3px;border-radius:8px}
+.cin{--c:var(--in)} .con{--c:var(--on)} .cat{--c:var(--at)} .cink{--c:var(--ink)}
+.w-in{color:var(--in)} .w-on{color:var(--on)} .w-at{color:var(--at)}
+b.p{font-weight:800}
+
+/* ---------- section ---------- */
+section.page{margin-top:34px;background:var(--card);border:2px solid var(--ink);border-radius:20px;padding:30px 36px 34px;box-shadow:8px 8px 0 var(--c)}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--c);color:#fff;padding:3px 10px;border-radius:6px}
+.page h2{font-family:var(--f-head);font-size:clamp(36px,5vw,56px);line-height:1;text-transform:uppercase;letter-spacing:.01em;margin-top:12px}
+.page .sub{color:var(--muted);margin-top:8px;max-width:780px}
+
+/* ---------- hero (gig poster) ---------- */
+.hero{margin-top:26px;background:var(--ink);color:var(--bg);border-radius:22px;padding:40px 42px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:34px;align-items:center;position:relative;overflow:hidden}
+.hero .k{font-family:var(--f-mono);font-size:14px;letter-spacing:.24em;color:var(--gold)}
+.hero h1{font-family:var(--f-head);font-size:clamp(84px,14vw,170px);line-height:.86;text-transform:uppercase;margin-top:10px}
+.hero h1 span{display:block;color:var(--gold)}
+.hero p{margin-top:16px;font-size:20px;color:color-mix(in srgb,var(--bg) 82%,var(--ink));max-width:430px}
+.dates{border:2px solid color-mix(in srgb,var(--bg) 35%,transparent);border-radius:16px;padding:8px 22px}
+.dates div{display:flex;align-items:baseline;gap:16px;padding:14px 0;border-top:1px dashed color-mix(in srgb,var(--bg) 30%,transparent)}
+.dates div:first-child{border-top:0}
+.dates b{font-family:var(--f-head);font-weight:400;font-size:44px;line-height:1;text-transform:uppercase;width:72px}
+.dates span{font-family:var(--f-mono);font-size:22px;letter-spacing:.04em}
+.dates .i b{color:#8FA6FF} .dates .o b{color:#FF8B66} .dates .a b{color:#4FD3A0}
+
+/* ---------- buttons ---------- */
+.btn{border:2px solid var(--ink);background:var(--c);color:#fff;border-radius:999px;padding:9px 20px;font-weight:700;font-size:16px;display:inline-flex;align-items:center;gap:8px}
+.btn.ghost{background:#fff;color:var(--ink)}
+.btn svg{width:18px;height:18px}
+.ctl{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px}
+.score{font-family:var(--f-mono);font-weight:700}
+.dots{display:flex;gap:6px;margin-left:auto}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--c)}
+
+/* ---------- deck ---------- */
+.deck{margin-top:24px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:28px;align-items:center}
+.deck .count{font-family:var(--f-head);font-size:110px;line-height:1;color:color-mix(in srgb,var(--c) 35%,white);min-width:110px;text-align:center}
+.deck .q{font-size:clamp(28px,3.4vw,40px);font-weight:700;line-height:1.2;min-height:2.6em;display:flex;align-items:center}
+.deck .ans{margin-top:10px;font-size:22px;font-weight:600;color:var(--muted);min-height:1.6em;visibility:hidden}
+.deck .ans.show{visibility:visible}
+.deck .ans b{font-family:var(--f-head);font-weight:400;font-size:34px;letter-spacing:.02em;text-transform:uppercase;margin-right:8px;vertical-align:-3px}
+.blank{display:inline-block;min-width:88px;border-bottom:4px solid var(--c);margin-right:10px;text-align:center}
+
+/* ---------- sort ---------- */
+.pool{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;min-height:52px;padding:12px;border:2px dashed var(--line);border-radius:14px}
+.chip{border:2px solid var(--ink);background:#fff;border-radius:999px;padding:7px 16px;font-weight:700;font-size:18px;transition:transform .15s}
+.chip.sel{background:var(--ink);color:#fff;transform:translateY(-2px)}
+.chip.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,white);color:var(--ok)}
+.chip.no{border-color:var(--no);background:color-mix(in srgb,var(--no) 12%,white);color:var(--no)}
+.buckets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.bucket{border:2px solid var(--c);border-radius:16px;min-height:200px;padding:12px;background:color-mix(in srgb,var(--c) 6%,white);text-align:left;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.bucket .bh{font-family:var(--f-head);font-size:40px;line-height:1;color:var(--c);text-transform:uppercase;width:100%}
+.bucket .bh small{font-family:var(--f-mono);font-size:13px;color:var(--muted);text-transform:none;margin-left:8px;letter-spacing:.04em}
+.bucket .chips{display:flex;flex-wrap:wrap;gap:8px}
+
+/* ---------- triangle ---------- */
+.tri{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr) minmax(0,1fr);gap:20px;align-items:center;margin-top:16px}
+.tri svg{width:100%;height:auto;display:block}
+.tri .side{display:flex;flex-direction:column;gap:22px}
+.tri .side div{border-left:5px solid var(--c);padding:4px 0 4px 14px}
+.tri .side b{font-family:var(--f-head);font-weight:400;font-size:28px;color:var(--c);text-transform:uppercase;display:block;line-height:1}
+.tri .side span{font-size:17px;color:var(--muted)}
+.zoom{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px;font-size:22px;font-weight:700;justify-content:center}
+.zoom span{padding:6px 14px;border-radius:999px;border:2px solid currentColor}
+.zoom i{font-style:normal;color:var(--muted)}
+.think{margin-top:16px;background:color-mix(in srgb,var(--gold) 22%,white);border-radius:14px;padding:12px 18px;font-weight:600;display:flex;gap:12px;align-items:flex-start}
+.think svg{width:24px;height:24px;flex:none;margin-top:2px}
+
+/* ---------- rule cards ---------- */
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px}
+.rule{border:2px solid var(--c);border-radius:16px;overflow:hidden;background:#fff}
+.rule .rh{background:var(--c);color:#fff;padding:10px 16px;display:flex;align-items:baseline;gap:10px}
+.rule .rh b{font-family:var(--f-head);font-weight:400;font-size:40px;line-height:1;text-transform:uppercase}
+.rule .rh span{font-family:var(--f-mono);font-size:13px;letter-spacing:.06em}
+.rule ul{list-style:none;margin:0;padding:8px 16px 14px}
+.rule li{padding:7px 0;border-top:1px solid var(--line);font-size:17px;line-height:1.35}
+.rule li:first-child{border-top:0}
+.rule li small{display:block;font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.rule li b{color:var(--c)}
+
+/* ---------- traps ---------- */
+.traps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:20px}
+.trap{border:2px solid var(--line);border-radius:16px;padding:14px 18px;background:#fff}
+.trap h3{font-weight:800;font-size:15px;font-family:var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.trap p{margin-top:6px;font-size:20px;line-height:1.45}
+.trap .vs{font-family:var(--f-mono);font-size:14px;color:var(--muted);margin:0 6px}
+.trap.wide{grid-column:1/-1}
+.x{color:var(--no);text-decoration:line-through;font-weight:600}
+
+/* ---------- multiple choice ---------- */
+.mc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 34px;margin-top:20px}
+.mc .q{padding:9px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;align-items:center}
+.mc .q .opts{margin-top:0;flex-wrap:nowrap}
+.mc .q p{font-size:19px;font-weight:600}
+.mc .q p .yr{font-family:var(--f-mono);font-size:12px;color:#fff;background:var(--c);border-radius:4px;padding:1px 6px;margin-right:6px;letter-spacing:.04em;vertical-align:2px}
+.mc .score{grid-column:1/-1;margin-top:6px}
+.opts{display:flex;gap:8px;margin-top:5px;flex-wrap:wrap}
+.op{border:2px solid var(--ink);background:#fff;border-radius:10px;padding:5px 16px;font-weight:800;font-size:17px;min-width:58px}
+.op.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.op.no{background:color-mix(in srgb,var(--no) 12%,white);border-color:var(--no);color:var(--no);text-decoration:line-through}
+.q .gap{display:inline-block;min-width:44px;border-bottom:3px solid var(--ink);text-align:center;font-weight:800}
+.q.done .gap{border-color:var(--ok);color:var(--ok)}
+
+/* ---------- poster ---------- */
+.tour{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px;margin-top:20px;align-items:start}
+.poster{background:var(--ink);color:var(--bg);border-radius:16px;padding:22px 22px 18px;position:relative;overflow:hidden}
+.poster::before{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:var(--on);opacity:.9}
+.poster .bn{position:relative;font-family:var(--f-head);font-size:46px;line-height:.95;text-transform:uppercase}
+.poster .bn span{color:var(--gold)}
+.poster .yr{position:relative;font-family:var(--f-mono);letter-spacing:.2em;font-size:13px;color:color-mix(in srgb,var(--bg) 70%,var(--ink));margin-top:4px}
+.poster ul{list-style:none;margin:16px 0 0;padding:0;position:relative}
+.poster li{display:grid;grid-template-columns:118px 1fr auto;gap:10px;padding:10px 0;border-top:1px dashed color-mix(in srgb,var(--bg) 30%,transparent);font-family:var(--f-mono);font-size:16px;align-items:baseline}
+.poster li b{color:var(--gold)}
+.poster li em{font-style:normal;font-family:var(--f-body);font-weight:700;font-size:18px}
+.ask{display:flex;flex-direction:column;gap:10px}
+.ask .aq{border:2px solid var(--line);border-radius:14px;padding:10px 14px;background:#fff}
+.ask .aq p{font-weight:700;font-size:19px;display:flex;align-items:center;gap:10px;justify-content:space-between}
+.ask .aq .a{margin-top:6px;color:var(--muted);display:none;font-size:18px}
+.ask .aq.open .a{display:block}
+.ask .aq button{border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;font-size:14px;font-weight:700;flex:none}
+.your{margin-top:4px;background:color-mix(in srgb,var(--gold) 22%,white);border-radius:14px;padding:12px 14px;font-weight:600}
+
+/* ---------- right or wrong ---------- */
+.rw{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 26px;margin-top:20px}
+.rw .it{border-top:1px solid var(--line);padding:8px 0;display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center}
+.rw .it .opts{margin-top:0}
+.rw .it .fix{grid-column:1/-1;margin-top:0!important}
+.rw .it p{font-size:20px;font-weight:600}
+.rw .it .fix{margin-top:4px;font-size:17px;color:var(--ok);font-weight:700;visibility:hidden}
+.rw .it.done .fix{visibility:visible}
+.rw .score{grid-column:1/-1}
+
+/* ---------- talk ---------- */
+.qs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:20px}
+.qcard{border:2px solid var(--ink);border-radius:16px;padding:14px 18px 14px 62px;position:relative;font-size:20px;line-height:1.4;background:#fff}
+.qcard::before{content:attr(data-n);position:absolute;left:14px;top:12px;width:34px;height:34px;border-radius:50%;background:var(--c);color:#fff;font-family:var(--f-head);font-size:20px;display:grid;place-items:center}
+.qcard b{color:var(--c)}
+
+/* ---------- final game ---------- */
+.game{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px}
+.slot{border:2px dashed var(--c);border-radius:16px;padding:18px;min-height:150px;background:color-mix(in srgb,var(--c) 5%,white)}
+.slot b{font-family:var(--f-head);font-weight:400;font-size:38px;color:var(--c);line-height:1;display:block;text-transform:uppercase}
+.slot p{margin-top:8px;color:var(--muted);font-size:17px}
+.slot .ex{margin-top:10px;font-weight:600;color:var(--ink);font-size:18px}
+
+.end{margin-top:34px;text-align:center;font-family:var(--f-mono);letter-spacing:.2em;font-size:14px;color:var(--muted)}
+
+@media (max-width:880px){
+  body{font-size:17px}
+  section.page{padding:24px 18px 26px;box-shadow:5px 5px 0 var(--c)}
+  .hero{grid-template-columns:1fr;padding:30px 22px}
+  .buckets,.rules,.game{grid-template-columns:1fr}
+  .tri{grid-template-columns:1fr}
+  .tri svg{max-width:360px;margin:0 auto}
+  .traps,.mc,.rw,.qs,.tour{grid-template-columns:1fr}
+  .deck{grid-template-columns:1fr;gap:4px}
+  .deck .count{font-size:60px;text-align:left}
+  .poster li{grid-template-columns:96px 1fr auto;font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div>
+    <div class="k">THE TIME TOUR · LIVE</div>
+    <h1>On <span>Tour</span></h1>
+    <p>Every show has a year, a date and a time. Today we learn how to say all three.</p>
+  </div>
+  <div class="dates">
+    <div class="i"><b>in</b><span>2027 · March · the summer</span></div>
+    <div class="o"><b>on</b><span>Saturday · March 6</span></div>
+    <div class="a"><b>at</b><span>8 p.m. · night</span></div>
+  </div>
+</header>
+
+<!-- ================= 1 WARM-UP ================= -->
+<section class="page cink" id="warm">
+  <span class="tag">Soundcheck</span>
+  <h2>Let’s talk</h2>
+  <p class="sub">Answer in full sentences. Listen to the small words before the time.</p>
+  <div class="deck" data-deck="warm"><div class="count">1</div><div><div class="q"></div></div></div>
+  <div class="ctl"><button class="btn ghost" data-prev>Back</button><button class="btn" data-next>Next question</button><div class="dots"></div></div>
+</section>
+
+<!-- ================= 2 DISCOVER: SORT ================= -->
+<section class="page con" id="sort">
+  <span class="tag">Guess first</span>
+  <h2>Sort the setlist</h2>
+  <p class="sub">Where does each one go: in, on or at? Click a word, then click a box. Just guess — then check.</p>
+  <div class="pool" id="pool"></div>
+  <div class="buckets" id="buckets"></div>
+  <div class="ctl"><button class="btn" id="sck">Check</button><button class="btn ghost" id="srs">Reset</button><span class="score" id="ssc"></span></div>
+</section>
+
+<!-- ================= 3 TRIANGLE ================= -->
+<section class="page cin" id="tri">
+  <span class="tag">The rule</span>
+  <h2>From big to small</h2>
+  <p class="sub">The bigger and more general the time, the higher it is. The smaller and more exact, the lower it goes.</p>
+  <div class="tri">
+    <div class="side">
+      <div class="cin"><b>in</b><span>years, decades, centuries, seasons, months, parts of the day</span></div>
+      <div class="con"><b>on</b><span>days, dates, one-day holidays</span></div>
+      <div class="cat"><b>at</b><span>clock times, meal times, holiday seasons</span></div>
+    </div>
+    <svg viewBox="0 0 400 330" aria-label="Upside-down triangle: in at the top, on in the middle, at at the bottom">
+      <polygon points="10,10 390,10 280,113" fill="#2D55E8"/>
+      <polygon points="10,10 280,113 120,113" fill="#2D55E8"/>
+      <polygon points="120,113 280,113 241,220 159,220" fill="#E0512A"/>
+      <polygon points="159,220 241,220 200,320" fill="#0E8F63"/>
+      <text x="200" y="62" text-anchor="middle" fill="#fff" font-family="Anton,Impact,sans-serif" font-size="46">IN</text>
+      <text x="200" y="92" text-anchor="middle" fill="#fff" font-family="Space Mono,monospace" font-size="14">BIG · GENERAL</text>
+      <text x="200" y="167" text-anchor="middle" fill="#fff" font-family="Anton,Impact,sans-serif" font-size="36">ON</text>
+      <text x="200" y="196" text-anchor="middle" fill="#fff" font-family="Space Mono,monospace" font-size="12">MORE SPECIFIC</text>
+      <text x="200" y="262" text-anchor="middle" fill="#fff" font-family="Anton,Impact,sans-serif" font-size="26">AT</text>
+      <text x="200" y="283" text-anchor="middle" fill="#fff" font-family="Space Mono,monospace" font-size="9">EXACT</text>
+    </svg>
+    <div class="side">
+      <div class="cin"><b>in 2027</b><span>in the 1990s · in the summer · in July · in the morning</span></div>
+      <div class="con"><b>on Friday</b><span>on March 6 · on my birthday · on Christmas Day</span></div>
+      <div class="cat"><b>at 8 p.m.</b><span>at lunch · at noon · at night · at Christmas</span></div>
+    </div>
+  </div>
+  <div class="zoom"><span class="w-in">in 2027</span><i>›</i><span class="w-in">in March</span><i>›</i><span class="w-on">on March 6</span><i>›</i><span class="w-at">at 8 p.m.</span></div>
+  <div class="think"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/></svg><div>Look at your answers in “Sort the setlist”. Which ones were right? Which ones surprised you?</div></div>
+</section>
+
+<!-- ================= 4 RULE CARDS ================= -->
+<section class="page cink" id="rules">
+  <span class="tag">Look closer</span>
+  <h2>In, on, at — with examples</h2>
+  <p class="sub">Read the examples aloud. Then make one sentence about you for each box.</p>
+  <div class="rules">
+    <div class="rule cin"><div class="rh"><b>in</b><span>BIG · GENERAL</span></div><ul>
+      <li><small>years</small>I was born <b>in</b> 2008.</li>
+      <li><small>decades · centuries</small>Rock was huge <b>in</b> the 1970s.</li>
+      <li><small>seasons</small>We play outside <b>in</b> the summer.</li>
+      <li><small>months</small>The school concert is <b>in</b> May.</li>
+      <li><small>parts of the day</small>I practice <b>in</b> the evening.</li>
+    </ul></div>
+    <div class="rule con"><div class="rh"><b>on</b><span>MORE SPECIFIC</span></div><ul>
+      <li><small>days</small>We have band practice <b>on</b> Tuesdays.</li>
+      <li><small>dates</small>The show is <b>on</b> March 6.</li>
+      <li><small>one-day holidays</small>We watch fireworks <b>on</b> July 4th.</li>
+      <li><small>special days</small>I got a guitar <b>on</b> my birthday.</li>
+      <li><small>day + part of day</small>See you <b>on</b> Monday morning!</li>
+    </ul></div>
+    <div class="rule cat"><div class="rh"><b>at</b><span>EXACT</span></div><ul>
+      <li><small>clock times</small>The concert starts <b>at</b> 8 p.m.</li>
+      <li><small>noon · midnight</small>The party ended <b>at</b> midnight.</li>
+      <li><small>meal times</small>We talked about it <b>at</b> lunch.</li>
+      <li><small>holiday seasons</small>My cousins visit us <b>at</b> Christmas.</li>
+      <li><small>night</small>I write songs <b>at</b> night.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= 5 TRAPS ================= -->
+<section class="page con" id="traps">
+  <span class="tag">Watch out</span>
+  <h2>Tricky ones</h2>
+  <p class="sub">These are the places where people make mistakes. Which one surprises you most?</p>
+  <div class="traps">
+    <div class="trap"><h3>Parts of the day</h3><p><b class="w-in">in</b> the morning, <b class="w-in">in</b> the afternoon, <b class="w-in">in</b> the evening<br>but <b class="w-at">at</b> night</p></div>
+    <div class="trap"><h3>One day or the season?</h3><p><b class="w-on">on</b> Christmas Day <span class="vs">one day</span><br><b class="w-at">at</b> Christmas <span class="vs">the whole holiday time</span></p></div>
+    <div class="trap"><h3>Day + part of day</h3><p><b class="w-on">on</b> Friday night, <b class="w-on">on</b> Sunday morning<br><span class="x">in Sunday morning</span></p></div>
+    <div class="trap"><h3>The weekend</h3><p><b class="w-on">on</b> the weekend <span class="vs">American</span><br><b class="w-at">at</b> the weekend <span class="vs">British</span></p></div>
+    <div class="trap wide"><h3>No in, on or at!</h3><p>today · tomorrow · yesterday · <b>this</b> / <b>next</b> / <b>last</b> / <b>every</b> + time<br>I have a test <b>next Friday</b>. We saw them <b>last summer</b>. I practice <b>every evening</b>. <span class="x">on next Friday</span></p></div>
+  </div>
+</section>
+
+<!-- ================= 6 QUICK FIRE ================= -->
+<section class="page cat" id="quick">
+  <span class="tag">Speed round</span>
+  <h2>Say it fast</h2>
+  <p class="sub">Say the right word. Then say a true sentence about you with it.</p>
+  <div class="deck" data-deck="quick"><div class="count">1</div><div><div class="q"></div><div class="ans"></div></div></div>
+  <div class="ctl"><button class="btn ghost" data-prev>Back</button><button class="btn ghost" data-show>Show answer</button><button class="btn" data-next>Next</button><div class="dots"></div></div>
+</section>
+
+<!-- ================= 7 MUSIC HISTORY ================= -->
+<section class="page cin" id="history">
+  <span class="tag">Music history</span>
+  <h2>When did it happen?</h2>
+  <p class="sub">Choose in, on or at. Read the full sentence aloud. Did you know these facts?</p>
+  <div class="mc" id="mch"></div>
+</section>
+
+<!-- ================= 8 TOUR POSTER ================= -->
+<section class="page con" id="tour">
+  <span class="tag">Tour dates</span>
+  <h2>When is the show?</h2>
+  <p class="sub">Look at the poster and answer in a full sentence, with every detail.</p>
+  <div class="tour">
+    <div class="poster">
+      <div class="bn">The Late<br><span>Bloomers</span></div>
+      <div class="yr">WORLD TOUR · 2027</div>
+      <ul>
+        <li><b>SAT · MAR 6</b><em>Chicago</em><span>8 PM</span></li>
+        <li><b>FRI · MAR 12</b><em>Nashville</em><span>7:30 PM</span></li>
+        <li><b>SUN · APR 4</b><em>Austin</em><span>NOON</span></li>
+        <li><b>JULY 4TH</b><em>New York</em><span>9 PM</span></li>
+        <li><b>SUMMER</b><em>Festival tour</em><span>2027</span></li>
+      </ul>
+    </div>
+    <div class="ask" id="ask"></div>
+  </div>
+</section>
+
+<!-- ================= 9 RIGHT OR WRONG ================= -->
+<section class="page cat" id="rw">
+  <span class="tag">Fix it</span>
+  <h2>Right or wrong?</h2>
+  <p class="sub">Read each sentence. Is it right? If it’s wrong, say the correct sentence.</p>
+  <div class="rw" id="rwl"></div>
+</section>
+
+<!-- ================= 10 NO PREPOSITION ================= -->
+<section class="page cin" id="none">
+  <span class="tag">Tricky ones</span>
+  <h2>In, on, at — or nothing?</h2>
+  <p class="sub">Sometimes we need no word at all. Choose “—” for nothing.</p>
+  <div class="mc" id="mcn"></div>
+</section>
+
+<!-- ================= 11 TALK ================= -->
+<section class="page con" id="talk">
+  <span class="tag">About you</span>
+  <h2>Your year, your week</h2>
+  <p class="sub">Answer with in, on or at. Then ask me the same question.</p>
+  <div class="qs">
+    <div class="qcard" data-n="1">What do you usually do <b>on</b> Saturday mornings?</div>
+    <div class="qcard" data-n="2">What time do you wake up <b>on</b> school days? And <b>on</b> the weekend?</div>
+    <div class="qcard" data-n="3">What did you do <b>in</b> the summer?</div>
+    <div class="qcard" data-n="4">What does your family do <b>at</b> Thanksgiving? What do you eat <b>on</b> Thanksgiving Day?</div>
+    <div class="qcard" data-n="5">Which decade had the best music: the 1970s, the 1990s or now? Why?</div>
+    <div class="qcard" data-n="6">When do you write songs or practice: <b>in</b> the morning, <b>in</b> the evening or <b>at</b> night?</div>
+  </div>
+</section>
+
+<!-- ================= 12 FINAL GAME ================= -->
+<section class="page cat" id="game">
+  <span class="tag">Final game</span>
+  <h2>Two truths and a lie</h2>
+  <p class="sub">Say three sentences about you: one with in, one with on, one with at. One sentence is a lie! I will guess which one. Then it’s my turn.</p>
+  <div class="game">
+    <div class="slot cin"><b>in</b><p>a year, a season, a month…</p><p class="ex">I started guitar in 2019.</p></div>
+    <div class="slot con"><b>on</b><p>a day, a date, a holiday…</p><p class="ex">I got my first guitar on my birthday.</p></div>
+    <div class="slot cat"><b>at</b><p>a time, a meal, night…</p><p class="ex">I always wake up at 6 a.m.</p></div>
+  </div>
+</section>
+
+<p class="end">THE TIME TOUR · THAT’S A WRAP</p>
+</div>
+
+<script>
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+
+/* ---------- decks ---------- */
+var DECKS={
+ warm:[
+  "When is your birthday?",
+  "What time does your band practice start?",
+  "What do you usually do on the weekend?",
+  "What is your favorite season? Why?",
+  "When did you start playing the guitar?",
+  "What is your favorite holiday? What do you do then?"
+ ],
+ quick:[
+  ["___ 2010","in"],["___ Saturday night","on"],["___ midnight","at"],["___ the 1980s","in"],["___ Halloween","on"],["___ the winter","in"],
+  ["___ dinner","at"],["___ my birthday","on"],["___ next week","—","no word: next week"],["___ 3:15","at"],["___ the evening","in"],["___ New Year’s Eve","on"],
+  ["___ night","at"],["___ last summer","—","no word: last summer"],["___ December 25","on"],["___ Christmas","at","the holiday time"]
+ ]
+};
+$$('[data-deck]').forEach(function(d){
+ var sec=d.closest('section'),items=DECKS[d.dataset.deck],i=0,dots=$('.dots',sec);
+ dots.innerHTML=items.map(function(){return '<i></i>'}).join('');
+ function r(){var it=items[i];$('.count',d).textContent=i+1;
+  if(typeof it=='string'){$('.q',d).textContent=it}
+  else{$('.q',d).innerHTML=it[0].replace('___','<span class="blank">&nbsp;</span>');
+   var cls=it[1]=='in'?'w-in':it[1]=='on'?'w-on':it[1]=='at'?'w-at':'';
+   var a=$('.ans',d);a.innerHTML='<b class="'+cls+'">'+it[1]+'</b>'+(it[2]||it[0].replace('___ ',it[1]+' '));a.classList.remove('show')}
+  $$('i',dots).forEach(function(x,k){x.classList.toggle('on',k==i)})}
+ $('[data-next]',sec).onclick=function(){i=(i+1)%items.length;r()};
+ $('[data-prev]',sec).onclick=function(){i=(i+items.length-1)%items.length;r()};
+ var sh=$('[data-show]',sec);if(sh)sh.onclick=function(){$('.ans',d).classList.toggle('show')};
+ r();
+});
+
+/* ---------- sort ---------- */
+(function(){
+ var W=[["1969","in"],["Monday","on"],["7:30","at"],["July","in"],["my birthday","on"],["lunch","at"],["the summer","in"],["July 4th","on"],["night","at"],["the 1990s","in"],["Christmas Day","on"],["noon","at"],["the morning","in"]];
+ var B=[["in","cin","big"],["on","con","specific"],["at","cat","exact"]];
+ var pool=$('#pool'),bk=$('#buckets'),sel=null;
+ function build(){
+  pool.innerHTML=W.map(function(w,i){return '<button class="chip" data-i="'+i+'">'+w[0]+'</button>'}).join('');
+  bk.innerHTML=B.map(function(b){return '<div class="bucket '+b[1]+'" data-b="'+b[0]+'"><div class="bh">'+b[0]+'<small>'+b[2]+'</small></div><div class="chips"></div></div>'}).join('');
+  sel=null;$('#ssc').textContent='';
+ }
+ build();
+ document.getElementById('sort').addEventListener('click',function(e){
+  var c=e.target.closest('.chip'),b=e.target.closest('.bucket');
+  if(c){$$('#sort .chip').forEach(function(x){x.classList.remove('sel')});
+   if(sel===c){sel=null;return}sel=c;c.classList.add('sel');c.classList.remove('ok','no');return}
+  if(b&&sel){$('.chips',b).appendChild(sel);sel.classList.remove('sel','ok','no');sel=null;$('#ssc').textContent=''}
+  else if(e.target.closest('.pool')&&sel){pool.appendChild(sel);sel.classList.remove('sel');sel=null}
+ });
+ $('#sck').onclick=function(){var ok=0,n=0;$$('.bucket').forEach(function(b){$$('.chip',b).forEach(function(c){n++;var r=W[+c.dataset.i][1]==b.dataset.b;c.classList.toggle('ok',r);c.classList.toggle('no',!r);if(r)ok++})});
+  $('#ssc').textContent=ok+' / '+W.length+(n<W.length?' · '+(W.length-n)+' left':'')};
+ $('#srs').onclick=build;
+})();
+
+/* ---------- multiple choice ---------- */
+function mc(el,items,opts){var sc=0;
+ el.innerHTML=items.map(function(it,n){return '<div class="q"><p>'+(n+1)+'. '+(it[2]?'<span class="yr">'+it[2]+'</span>':'')+it[0].replace('___','<span class="gap">&nbsp;</span>')+'</p><div class="opts">'+opts.map(function(o){return '<button class="op">'+o+'</button>'}).join('')+'</div></div>'}).join('')+'<p class="score"></p>';
+ var s=$('.score',el);
+ el.addEventListener('click',function(e){var b=e.target.closest('.op');if(!b)return;var q=b.closest('.q'),i=$$('.q',el).indexOf(q);
+  if(q.classList.contains('done'))return;
+  if(b.textContent==items[i][1]){b.classList.add('ok');q.classList.add('done');$('.gap',q).textContent=items[i][1]=='—'?'':items[i][1];if(!q.dataset.w)sc++;s.textContent='Score: '+sc+' / '+items.length}
+  else{b.classList.add('no');q.dataset.w=1}});
+}
+mc($('#mch'),[
+ ["Elvis Presley was born ___ January 8, 1935.","on","1935"],
+ ["Rock and roll became popular ___ the 1950s.","in","1950s"],
+ ["The Beatles arrived in America ___ February 1964.","in","1964"],
+ ["They played on American TV for the first time ___ a Sunday night.","on","1964"],
+ ["The Woodstock festival happened ___ the summer of 1969.","in","1969"],
+ ["MTV started ___ August 1, 1981.","on","1981"],
+ ["Michael Jackson’s “Thriller” came out ___ 1982.","in","1982"],
+ ["Taylor Swift was born ___ December 13, 1989.","on","1989"],
+ ["Radio stations play “All I Want for Christmas Is You” all the time ___ Christmas.","at","every year"]
+],["in","on","at"]);
+mc($('#mcn'),[
+ ["I saw them live ___ last summer.","—"],
+ ["We have a history test ___ next Friday.","—"],
+ ["I practice guitar ___ every evening.","—"],
+ ["Their new album comes out ___ Friday.","on"],
+ ["What are you doing ___ this weekend?","—"],
+ ["Our band started ___ 2024.","in"],
+ ["Let’s meet ___ tomorrow after school.","—"],
+ ["I can’t sleep ___ night before a show.","at"]
+],["in","on","at","—"]);
+
+/* ---------- tour questions ---------- */
+(function(){var Q=[
+ ["When is the Chicago show?","It’s on Saturday, March 6, at 8 p.m."],
+ ["When is the Nashville show?","It’s on Friday, March 12, at 7:30 p.m."],
+ ["What time does the Austin show start?","It starts at noon on Sunday, April 4."],
+ ["When can you see them in New York?","On the Fourth of July, at 9 p.m."],
+ ["When is the festival tour?","It’s in the summer, in 2027."]
+];
+ $('#ask').innerHTML=Q.map(function(q,i){return '<div class="aq"><p><span>'+(i+1)+'. '+q[0]+'</span><button>Answer</button></p><div class="a">'+q[1]+'</div></div>'}).join('')+'<div class="your">Your turn: your band is going on tour! Tell me three dates — the month, the day and the time.</div>';
+ $('#ask').addEventListener('click',function(e){var b=e.target.closest('button');if(b)b.closest('.aq').classList.toggle('open')});
+})();
+
+/* ---------- right or wrong ---------- */
+(function(){var R=[
+ ["See you in Monday!",0,"See you on Monday!"],
+ ["My birthday is in May.",1,"Right!"],
+ ["We have practice at Friday afternoon.",0,"We have practice on Friday afternoon."],
+ ["I usually do my homework at night.",1,"Right!"],
+ ["The concert starts on 8 p.m.",0,"The concert starts at 8 p.m."],
+ ["What are you doing in the weekend?",0,"What are you doing on the weekend?"],
+ ["We’re going to Florida next summer.",1,"Right! No word before next summer."],
+ ["I’ll call you on tomorrow.",0,"I’ll call you tomorrow."],
+ ["My grandma always cooks a lot at Thanksgiving.",1,"Right!"],
+ ["I was born on 2008.",0,"I was born in 2008."]
+],sc=0;
+ var el=$('#rwl');
+ el.innerHTML=R.map(function(r,i){return '<div class="it"><p>'+(i+1)+'. '+r[0]+'</p><div class="opts"><button class="op" data-v="1">Right</button><button class="op" data-v="0">Wrong</button></div><p class="fix">'+r[2]+'</p></div>'}).join('')+'<p class="score"></p>';
+ el.addEventListener('click',function(e){var b=e.target.closest('.op');if(!b)return;var it=b.closest('.it'),i=$$('.it',el).indexOf(it);if(it.classList.contains('done'))return;
+  if(+b.dataset.v==R[i][1]){b.classList.add('ok');it.classList.add('done');if(!it.dataset.w)sc++;$('.score',el).textContent='Score: '+sc+' / '+R.length}
+  else{b.classList.add('no');it.dataset.w=1}});
+})();
+</script>
+</body>
+</html>
