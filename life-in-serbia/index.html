@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Life in Serbia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F1EA; --card:#FFFFFF; --ink:#1D2738; --muted:#667085; --line:#E5DDD2; --soft:#EFE8DE;
+  --roof:#C8553D; --river:#2B6CB0;
+  --ps:#1B9C85; --pc:#46A84F; --pas:#D9573B; --pac:#E8962E; --pp:#7457E8; --gt:#2F78E4; --will:#D9407A;
+  --ok:#2E9E5B; --no:#D2383A;
+  --f-h:"Unbounded",system-ui,sans-serif; --f-b:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-b);font-size:20px;line-height:1.5;padding:0 20px 120px}
+h1,h2,h3,p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+:focus-visible{outline:3px solid var(--river);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1200px;margin:0 auto}
+[hidden]{display:none!important}
+.t-ps{--c:var(--ps)} .t-pc{--c:var(--pc)} .t-pas{--c:var(--pas)} .t-pac{--c:var(--pac)}
+.t-pp{--c:var(--pp)} .t-gt{--c:var(--gt)} .t-will{--c:var(--will)}
+b.hl{color:var(--c);font-weight:800}
+
+/* ---------- hero ---------- */
+.hero{min-height:100vh;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;align-items:center;padding:40px 0}
+.eyebrow{font-weight:800;font-size:15px;letter-spacing:.18em;text-transform:uppercase;color:var(--roof)}
+.hero h1{font-family:var(--f-h);font-weight:800;font-size:clamp(50px,6.6vw,92px);line-height:.98;letter-spacing:-.03em;margin-top:14px}
+.hero .lead{font-size:24px;margin-top:20px;max-width:540px;color:var(--muted)}
+.roofs{display:block;width:100%;max-width:560px;height:auto;margin-top:30px}
+.setlist{background:var(--card);border-radius:28px;padding:22px 28px;box-shadow:0 20px 50px -30px rgba(29,39,56,.35)}
+.setlist h3{font-family:var(--f-h);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:14px 0 4px}
+.setlist h3:first-child{margin-top:0}
+.setlist .row{display:flex;flex-wrap:wrap;gap:6px 8px}
+.setlist a{color:inherit;text-decoration:none;font-weight:700;font-size:16px;padding:5px 12px;border-radius:99px;background:var(--soft)}
+.setlist a.tn{background:color-mix(in srgb,var(--c) 14%,white);color:var(--c)}
+.setlist a:hover{background:var(--ink);color:#fff}
+
+/* ---------- part divider ---------- */
+.part{min-height:70vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:16px;padding:40px 0}
+.part .k{font-family:var(--f-h);font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--roof)}
+.part h2{font-family:var(--f-h);font-weight:800;font-size:clamp(44px,6vw,84px);line-height:1;letter-spacing:-.03em}
+.part p{font-size:24px;color:var(--muted);max-width:760px}
+.part .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.part .pills span{font-weight:800;font-size:17px;padding:6px 14px;border-radius:99px;background:var(--c);color:#fff}
+
+/* ---------- track ---------- */
+.track{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:32px 0}
+.thead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.num{font-family:var(--f-h);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;background:var(--c,var(--ink));color:#fff;padding:6px 12px;border-radius:99px}
+.track h2{font-family:var(--f-h);font-weight:800;font-size:clamp(34px,4.6vw,56px);line-height:1.05;letter-spacing:-.025em;width:100%}
+.track h2 .c{color:var(--c)}
+.task{font-size:22px;color:var(--muted);max-width:900px;margin-bottom:18px}
+.task b{color:var(--ink)}
+.card{background:var(--card);border-radius:24px;padding:24px 28px;box-shadow:0 14px 40px -28px rgba(29,39,56,.35)}
+
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:17px;padding:10px 20px;border-radius:99px;background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line)}
+.btn svg{width:18px;height:18px}
+.ctl{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:20px}
+.score{font-weight:800;color:var(--muted);font-size:18px}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
+
+.think{margin-top:18px;border-left:6px solid var(--river);background:color-mix(in srgb,var(--river) 8%,white);border-radius:0 18px 18px 0;padding:16px 24px}
+.think .k{font-weight:800;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--river)}
+.think p{font-size:21px;font-weight:600;margin-top:4px}
+
+/* warm-up */
+.qgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.qcard{text-align:left;background:var(--card);border-radius:20px;padding:18px 22px;display:flex;gap:16px;align-items:center;box-shadow:0 10px 30px -24px rgba(29,39,56,.4)}
+.qcard .n{font-family:var(--f-h);font-weight:700;color:var(--muted);font-size:16px;width:22px;flex:none}
+.qcard .q{font-size:21px;font-weight:600;flex:1}
+.qcard .tg{flex:none;font-size:14px;font-weight:800;padding:5px 11px;border-radius:99px;background:var(--soft);color:var(--muted);white-space:nowrap}
+.qcard.on{box-shadow:inset 0 0 0 3px var(--c)}
+.qcard.on .tg{background:var(--c);color:#fff}
+
+/* map */
+.map{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.tcard{background:var(--card);border-radius:20px;padding:14px 16px 16px;border-top:8px solid var(--c);display:flex;flex-direction:column;gap:5px;box-shadow:0 10px 30px -24px rgba(29,39,56,.4);text-decoration:none;color:inherit}
+.tcard h3{font-family:var(--f-h);font-size:17px;line-height:1.15;color:var(--c)}
+.tcard svg.tl{width:100%;height:36px}
+.tcard .use{font-size:17px;font-weight:700}
+.tcard .ex{font-size:16px;font-style:italic;background:color-mix(in srgb,var(--c) 9%,white);border-radius:10px;padding:6px 10px}
+
+/* rule screen */
+.rule{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.5fr);gap:20px;align-items:stretch}
+.rule .side{background:color-mix(in srgb,var(--c) 10%,white);border-radius:24px;padding:24px 26px;display:flex;flex-direction:column;gap:14px}
+.rule .side .lab{font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--c)}
+.rule .side .use{font-size:23px;font-weight:700;line-height:1.3}
+.rule .side svg.tl{width:100%;height:56px}
+.sig{display:flex;flex-wrap:wrap;gap:6px}
+.sig span{font-size:16px;font-weight:700;padding:3px 11px;border-radius:99px;background:#fff;color:var(--c);box-shadow:inset 0 0 0 1.5px var(--c)}
+.forms{background:var(--card);border-radius:24px;padding:8px 26px;box-shadow:0 14px 40px -28px rgba(29,39,56,.35)}
+.forms .fr{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}
+.forms .fr:first-child{border-top:0}
+.forms .fl{font-weight:800;font-size:16px;color:var(--muted);display:flex;align-items:center;gap:10px}
+.forms .fl i{width:32px;height:32px;border-radius:50%;background:var(--c);color:#fff;font-style:normal;display:grid;place-items:center;font-size:20px;font-weight:800;flex:none}
+.forms .fx{font-size:22px;line-height:1.45}
+.forms .fx div + div{margin-top:2px}
+.extra{margin-top:12px;font-size:17px;color:var(--muted);font-weight:600}
+.extra b{color:var(--ink)}
+
+/* practice screen */
+.prac{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.pbox{background:var(--card);border-radius:22px;padding:18px 22px;box-shadow:0 10px 30px -24px rgba(29,39,56,.4);display:flex;flex-direction:column;gap:10px}
+.pbox h3{font-family:var(--f-h);font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--c);display:flex;align-items:center;gap:10px}
+.pbox h3 i{width:28px;height:28px;border-radius:50%;background:var(--c);color:#fff;font-style:normal;display:grid;place-items:center;font-size:17px;flex:none}
+.rv{text-align:left;border-radius:14px;background:var(--soft);padding:10px 14px;font-size:20px;font-weight:600;line-height:1.35}
+.rv .cue{color:var(--muted);font-weight:700;font-size:17px;margin-left:6px}
+.rv .a{display:none;color:var(--ok);font-weight:800;margin-top:4px}
+.rv.on{background:color-mix(in srgb,var(--ok) 10%,white)}
+.rv.on .a{display:block}
+.sa{border-radius:14px;background:var(--soft);padding:10px 14px}
+.sa .q{font-size:20px;font-weight:600}
+.sa .opts{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.sa .opts button{font-size:18px;font-weight:700;padding:4px 12px;border-radius:10px;background:#fff}
+.sa .opts button.no{color:var(--no);text-decoration:line-through;background:color-mix(in srgb,var(--no) 10%,white)}
+.sa .opts button.yes{color:#fff;background:var(--ok)}
+.ask{font-size:21px;font-weight:700;padding:8px 0 8px 16px;border-left:4px solid var(--c)}
+
+/* sorting */
+.pool{display:flex;flex-wrap:wrap;gap:10px;min-height:56px;padding:16px;border-radius:20px;background:var(--soft)}
+.chip{font-weight:700;font-size:19px;padding:8px 16px;border-radius:99px;background:var(--card);box-shadow:0 4px 12px -8px rgba(29,39,56,.5)}
+.chip.sel{background:var(--ink);color:#fff}
+.chip.placed{background:var(--c);color:#fff;box-shadow:none;cursor:default;font-size:17px;padding:5px 12px}
+.buckets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px}
+.bucket{text-align:left;background:var(--card);border-radius:20px;padding:14px 16px;min-height:112px;border:3px dashed color-mix(in srgb,var(--c) 45%,white);display:flex;flex-direction:column;gap:10px}
+.bucket h3{font-family:var(--f-h);font-size:16px;color:var(--c)}
+.bucket .in{display:flex;flex-wrap:wrap;gap:6px}
+body.picking .bucket{border-style:solid}
+
+/* matching */
+.match{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 90px}
+.match svg.lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.mcol{display:flex;flex-direction:column;gap:10px}
+.mi{position:relative;text-align:left;background:var(--card);border-radius:16px;padding:12px 18px;font-size:20px;font-weight:600;box-shadow:0 8px 24px -20px rgba(29,39,56,.5);min-height:56px;display:flex;align-items:center}
+.mi::after{content:"";position:absolute;top:50%;width:14px;height:14px;border-radius:50%;background:var(--line);transform:translateY(-50%)}
+.mcol.l .mi::after{right:-7px} .mcol.r .mi::after{left:-7px}
+.mi.sel{box-shadow:inset 0 0 0 3px var(--ink)}
+.mi.done{box-shadow:inset 0 0 0 3px var(--c);cursor:default}
+.mi.done::after{background:var(--c)}
+.mi.bad{box-shadow:inset 0 0 0 3px var(--no)}
+
+/* story with option gaps */
+.story{font-size:24px;line-height:2.05}
+.story .page-l{font-weight:800;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;line-height:1.4}
+.gap{display:inline-flex;gap:4px;vertical-align:baseline;background:var(--soft);border-radius:12px;padding:2px 4px;line-height:1.3}
+.gap button{font-size:20px;font-weight:700;padding:3px 10px;border-radius:9px;background:var(--card)}
+.gap button.no{background:color-mix(in srgb,var(--no) 14%,white);color:var(--no);text-decoration:line-through}
+.gap.solved{background:transparent;padding:0}
+.gap.solved button{display:none}
+.gap .ans{display:none}
+.gap.solved .ans{display:inline;color:var(--ok);font-weight:800;border-bottom:3px solid color-mix(in srgb,var(--ok) 40%,white)}
+
+/* wrong notes */
+.wlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.wn{text-align:left;background:var(--card);border-radius:18px;padding:16px 20px;font-size:21px;font-weight:600;display:flex;gap:14px;align-items:flex-start;box-shadow:0 8px 24px -20px rgba(29,39,56,.5)}
+.wn .n{font-family:var(--f-h);font-weight:700;color:var(--muted);font-size:16px;width:22px;flex:none;padding-top:3px}
+.wn.on .bad{text-decoration:line-through;text-decoration-color:var(--no);text-decoration-thickness:3px;color:var(--muted)}
+.wn .fix{display:none;color:var(--ok);font-weight:800;margin-left:6px}
+.wn.on .fix{display:inline}
+.wn.on{box-shadow:inset 0 0 0 3px color-mix(in srgb,var(--ok) 50%,white)}
+
+/* typed gaps */
+.typed{font-size:24px;line-height:2.1}
+.inp{display:inline-flex;align-items:baseline;gap:6px;white-space:nowrap}
+.inp .hint{font-size:17px;font-weight:700;color:var(--muted)}
+.inp input{font:inherit;font-size:21px;font-weight:700;border:0;border-bottom:3px solid var(--line);background:var(--soft);border-radius:8px 8px 0 0;padding:1px 8px;width:9.5em;color:var(--ink)}
+.inp input:focus{outline:none;border-bottom-color:var(--river)}
+.inp.ok input{border-bottom-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,white);color:var(--ok)}
+.inp.no input{border-bottom-color:var(--no);background:color-mix(in srgb,var(--no) 10%,white)}
+
+/* builder */
+.blist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.brow{background:var(--card);border-radius:20px;padding:14px 18px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 14px;align-items:center;box-shadow:0 8px 24px -20px rgba(29,39,56,.5)}
+.brow .n{font-family:var(--f-h);font-weight:700;color:var(--muted);grid-row:span 2}
+.brow .out{min-height:46px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-bottom:2px dashed var(--line);padding-bottom:8px}
+.brow .bank{display:flex;flex-wrap:wrap;gap:8px}
+.wchip{font-weight:700;font-size:19px;padding:5px 13px;border-radius:10px;background:var(--soft)}
+.out .wchip{background:color-mix(in srgb,var(--river) 13%,white)}
+.brow.ok .out .wchip{background:color-mix(in srgb,var(--ok) 16%,white);color:var(--ok)}
+.brow.no .out{border-bottom-color:var(--no)}
+.brow .tt{font-size:14px;font-weight:800;padding:3px 10px;border-radius:99px;background:var(--c);color:#fff;margin-left:auto}
+
+/* speaking timeline */
+.arrow{display:flex;align-items:center;gap:12px;font-weight:800;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.arrow i{flex:1;height:4px;border-radius:99px;background:linear-gradient(90deg,var(--pas),var(--pac),var(--pp),var(--ps),var(--pc),var(--gt),var(--will))}
+.speak{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.sp{background:var(--card);border-radius:20px;padding:16px 18px;border-left:7px solid var(--c);display:flex;flex-direction:column;gap:6px;box-shadow:0 10px 30px -24px rgba(29,39,56,.4)}
+.sp .lab{font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+.sp .st{font-size:21px;font-weight:700;line-height:1.3}
+.sp .eg{font-size:16px;color:var(--muted);font-style:italic}
+
+/* roulette */
+.roul{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.slot{background:var(--card);border-radius:28px;padding:28px 30px;min-height:220px;display:flex;flex-direction:column;justify-content:center;gap:10px;box-shadow:0 20px 50px -30px rgba(29,39,56,.4);border-top:10px solid var(--c,var(--line))}
+.slot .k{font-weight:800;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.slot .v{font-family:var(--f-h);font-weight:800;font-size:clamp(30px,4vw,48px);line-height:1.1;color:var(--c,var(--ink))}
+.slot .h{font-size:19px;color:var(--muted);font-weight:600;min-height:1.5em}
+.spin{font-size:22px;padding:16px 34px}
+.foot{text-align:center;color:var(--muted);font-weight:600;margin-top:40px}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;min-height:auto;gap:30px}
+  .map,.speak{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .buckets{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rule{grid-template-columns:1fr}
+  .blist{grid-template-columns:1fr}
+  .match{gap:12px 40px}
+}
+@media (max-width:620px){
+  body{font-size:18px;padding:0 16px 100px}
+  .qgrid,.wlist,.map,.speak,.roul,.buckets,.prac{grid-template-columns:1fr}
+  .forms .fr{grid-template-columns:1fr;gap:6px}
+  .match{gap:10px 22px}
+  .mi{font-size:16px;padding:10px 12px}
+  .story,.typed{font-size:20px}
+  .track{min-height:auto}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div>
+    <div class="eyebrow">English tenses · Practice</div>
+    <h1>Life in<br>Serbia</h1>
+    <p class="lead">Seven tenses, one city, lots of questions.</p>
+    <svg class="roofs" viewBox="0 0 560 90" aria-hidden="true">
+      <path d="M0 88 H560" stroke="#2B6CB0" stroke-width="4" stroke-linecap="round"/>
+      <g fill="#C8553D"><path d="M10 86 V52 L40 30 L70 52 V86Z"/><path d="M150 86 V44 L190 18 L230 44 V86Z"/><path d="M330 86 V56 L355 38 L380 56 V86Z"/><path d="M470 86 V48 L505 24 L540 48 V86Z"/></g>
+      <g fill="#E8962E"><path d="M78 86 V60 L104 42 L130 60 V86Z"/><path d="M392 86 V52 L426 30 L460 52 V86Z"/></g>
+      <g fill="#1D2738"><path d="M240 86 V36 H252 V20 L262 6 L272 20 V36 H284 V86Z"/><rect x="290" y="50" width="30" height="36" rx="3"/></g>
+      <g fill="#F6F1EA"><rect x="30" y="62" width="10" height="12" rx="2"/><rect x="180" y="56" width="12" height="14" rx="2"/><rect x="258" y="48" width="8" height="12" rx="4"/><rect x="495" y="60" width="12" height="14" rx="2"/><rect x="420" y="62" width="10" height="12" rx="2"/></g>
+    </svg>
+  </div>
+  <nav class="setlist" aria-label="Contents">
+    <h3>Start</h3>
+    <div class="row"><a href="#warm">Warm-up</a><a href="#map">The Tense Map</a></div>
+    <h3>Part 1 · Tense by tense</h3>
+    <div class="row" id="navT"></div>
+    <h3>Part 2 · Mix it up</h3>
+    <div class="row"><a href="#m1">Signal Words</a><a href="#m2">Split Lines</a><a href="#m3">My First Year</a><a href="#m4">Wrong Notes</a><a href="#m5">A Sunday in Belgrade</a><a href="#m6">Questions</a><a href="#m7">My Serbia Timeline</a><a href="#m8">Tense Roulette</a></div>
+  </nav>
+</header>
+
+<section class="track" id="warm">
+  <div class="thead"><span class="num">Warm-up</span><h2>First coffee</h2></div>
+  <p class="task"><b>Answer the question.</b> Then guess: which tense is it? Tap the card to check.</p>
+  <div class="qgrid" id="qgrid"></div>
+</section>
+
+<section class="track" id="map">
+  <div class="thead"><span class="num">Overview</span><h2>The Tense Map</h2></div>
+  <div class="map" id="mapGrid"></div>
+  <div class="think"><div class="k">Think about it</div><p>Which tense is the easiest for you? Which one is the most difficult?</p></div>
+</section>
+
+<section class="part">
+  <div class="k">Part 1</div>
+  <h2>Tense by tense</h2>
+  <p>One tense at a time: how to make it, how to say “no”, how to ask, and how to answer.</p>
+  <div class="pills" id="pillsT"></div>
+</section>
+
+<div id="tenses"></div>
+
+<section class="part">
+  <div class="k">Part 2</div>
+  <h2>Mix it up</h2>
+  <p>Now all the tenses together. Look for the clues: when is it happening?</p>
+</section>
+
+<section class="track" id="m1">
+  <div class="thead"><span class="num">Mix 1</span><h2>Signal Words</h2></div>
+  <p class="task"><b>Where does each word go?</b> Tap a word, then tap a tense.</p>
+  <div class="pool" id="pool"></div>
+  <div class="buckets" id="buckets"></div>
+  <div class="ctl"><span class="score" id="sortScore"></span><button class="btn ghost" id="sortReset">Start again</button></div>
+</section>
+
+<section class="track" id="m2">
+  <div class="thead"><span class="num">Mix 2</span><h2>Split Lines</h2></div>
+  <p class="task"><b>Connect the two halves.</b> Tap a beginning, then its ending. Which tense is it?</p>
+  <div class="match" id="match"><svg class="lines" id="lines"></svg><div class="mcol l" id="mL"></div><div class="mcol r" id="mR"></div></div>
+  <div class="ctl"><span class="score" id="matchScore"></span><button class="btn ghost" id="matchReset">Start again</button></div>
+</section>
+
+<section class="track" id="m3">
+  <div class="thead"><span class="num">Mix 3</span><h2>My First Year</h2></div>
+  <p class="task"><b>Choose the right form.</b> Anna moved to Belgrade. Read her story.</p>
+  <div class="card story"><div class="page-l">Part 1 · The first days</div><div id="story1"></div></div>
+</section>
+
+<section class="track">
+  <div class="thead"><span class="num">Mix 3</span><h2>My First Year, part 2</h2></div>
+  <div class="card story"><div class="page-l">Part 2 · Now and next</div><div id="story2"></div></div>
+  <div class="think"><div class="k">Think about it</div><p>What was difficult for you in your first weeks in a new place? Who helped you?</p></div>
+</section>
+
+<section class="track" id="m4">
+  <div class="thead"><span class="num">Mix 4</span><h2>Wrong Notes</h2></div>
+  <p class="task"><b>Every sentence has one mistake.</b> Find it and say the sentence correctly. Tap to check.</p>
+  <div class="wlist" id="wlist"></div>
+</section>
+
+<section class="track" id="m5">
+  <div class="thead"><span class="num">Mix 5</span><h2>A Sunday in Belgrade</h2></div>
+  <p class="task"><b>Put the verbs in the right form.</b></p>
+  <div class="card typed" id="typed"></div>
+  <div class="ctl"><button class="btn" id="tCheck">Check</button><button class="btn ghost" id="tShow">Show answers</button><span class="score" id="tScore"></span></div>
+</section>
+
+<section class="track" id="m6">
+  <div class="thead"><span class="num">Mix 6</span><h2>Questions</h2></div>
+  <p class="task"><b>Put the words in order to make questions.</b> Then ask me.</p>
+  <div class="blist" id="blist"></div>
+</section>
+
+<section class="track" id="m7">
+  <div class="thead"><span class="num">Mix 7</span><h2>My Serbia Timeline</h2></div>
+  <p class="task"><b>Tell your story.</b> Finish each sentence about your life in Serbia.</p>
+  <div class="arrow"><span>Past</span><i></i><span>Future</span></div>
+  <div class="speak" id="speak"></div>
+  <div class="think"><div class="k">Think about it</div><p>What do you like most about life in Serbia? What is still difficult?</p></div>
+</section>
+
+<section class="track" id="m8">
+  <div class="thead"><span class="num">Mix 8</span><h2>Tense Roulette</h2></div>
+  <p class="task"><b>Spin!</b> Make a sentence or a question in this tense about this topic.</p>
+  <div class="roul">
+    <div class="slot" id="slotT"><div class="k">Tense</div><div class="v" id="rT">Ready?</div><div class="h" id="rH"></div></div>
+    <div class="slot"><div class="k">Topic</div><div class="v" id="rP">Spin</div><div class="h">&nbsp;</div></div>
+  </div>
+  <div class="ctl"><button class="btn spin" id="spin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>Spin</button></div>
+  <p class="foot">Great job today!</p>
+</section>
+
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const bump = e => { e.classList.remove('shake'); void e.offsetWidth; e.classList.add('shake'); };
+const hl = s => s.replace(/\[([^\]]+)\]/g, '<b class="hl">$1</b>');
+
+/* ================= DATA: each tense ================= */
+const TENSES = [
+ { k:"ps", name:"Present Simple", use:"Habits, routines and facts", sig:["usually","often","every day","on Sundays","never"],
+   pos:["I [live] in Belgrade.","She [lives] near the river."],
+   neg:["I [don’t speak] Serbian very well.","He [doesn’t drive] in the city."],
+   q:["[Do] you [take] the bus?","Where [does] she [work]?"],
+   sh:["Yes, I [do]. / No, I [don’t].","Yes, she [does]. / No, she [doesn’t]."],
+   extra:"<b>he / she / it</b> + <b>-s</b>: I live, she live<b>s</b> · I go, he go<b>es</b>",
+   negP:[["I buy vegetables at the supermarket.","I don’t buy vegetables at the supermarket."],["The bus comes on time.","The bus doesn’t come on time."]],
+   qP:[["The shops close at 9 pm.","what time?","What time do the shops close?"],["She drinks coffee with her neighbor.","who… with?","Who does she drink coffee with?"]],
+   saP:[["Do you like Serbian food?",["Yes, I do.","Yes, I like.","Yes, I am."]],["Does your street have a bakery?",["Yes, it does.","Yes, it has.","Yes, it is."]]],
+   ask:["What do you usually eat for breakfast?","How do you get to work?"] },
+ { k:"pc", name:"Present Continuous", use:"Now, around now, or for a short time", sig:["now","right now","at the moment","today","these days","Look!"],
+   pos:["I[’m learning] Serbian.","It[’s raining] in Belgrade."],
+   neg:["I[’m not working] today.","We [aren’t staying] at home tonight."],
+   q:["[Are] you [waiting] for the bus?","What [is] she [cooking]?"],
+   sh:["Yes, I [am]. / No, I[’m not].","Yes, she [is]. / No, she [isn’t]."],
+   extra:"<b>am / is / are</b> + verb<b>-ing</b> · Not with: like, know, want, understand",
+   negP:[["We’re sitting in a café.","We aren’t sitting in a café."],["My neighbor is painting the balcony.","My neighbor isn’t painting the balcony."]],
+   qP:[["She’s reading the menu.","what?","What is she reading?"],["They’re walking by the river.","where?","Where are they walking?"]],
+   saP:[["Are you learning Serbian?",["Yes, I am.","Yes, I do.","Yes, I learning."]],["Is it raining now?",["No, it isn’t.","No, it doesn’t.","No, it not."]]],
+   ask:["What are you reading or watching these days?","What is happening in your city this month?"] },
+ { k:"pas", name:"Past Simple", use:"Finished actions in the past. We know when.", sig:["yesterday","last week","in 2023","two days ago","when I was…"],
+   pos:["I [moved] to Serbia two years ago.","We [went] to Novi Sad last weekend."],
+   neg:["I [didn’t understand] the cashier.","We [didn’t take] a taxi."],
+   q:["[Did] you [visit] Kalemegdan?","When [did] you [arrive]?"],
+   sh:["Yes, I [did]. / No, I [didn’t]."],
+   extra:"Irregular: go → <b>went</b> · see → <b>saw</b> · buy → <b>bought</b> · eat → <b>ate</b> · take → <b>took</b> · have → <b>had</b>",
+   negP:[["We ate ćevapi yesterday.","We didn’t eat ćevapi yesterday."],["She bought a new SIM card.","She didn’t buy a new SIM card."]],
+   qP:[["They visited Novi Sad in May.","when?","When did they visit Novi Sad?"],["You paid 300 dinars.","how much?","How much did you pay?"]],
+   saP:[["Did you go out last night?",["No, I didn’t.","No, I wasn’t.","No, I don’t."]],["Did the bus come on time?",["Yes, it did.","Yes, it came.","Yes, it was."]]],
+   ask:["What did you do last weekend?","When did you last try a new Serbian dish?"] },
+ { k:"pac", name:"Past Continuous", use:"In progress at a moment in the past. The background of a story.", sig:["at 8 pm yesterday","while","when + Past Simple"],
+   pos:["I [was walking] home at 8 pm.","They [were having] dinner when I called."],
+   neg:["I [wasn’t sleeping].","We [weren’t listening]."],
+   q:["[Were] you [waiting] long?","What [was] he [doing] at 10?"],
+   sh:["Yes, I [was]. / No, I [wasn’t].","Yes, they [were]. / No, they [weren’t]."],
+   extra:"<b>was / were</b> + verb<b>-ing</b> · Long action <b>was walking</b> + short action <b>called</b>",
+   negP:[["It was snowing in the morning.","It wasn’t snowing in the morning."],["We were sitting on the terrace.","We weren’t sitting on the terrace."]],
+   qP:[["She was shopping at the market.","where?","Where was she shopping?"],["They were talking about the trip.","what… about?","What were they talking about?"]],
+   saP:[["Were you working at 9 am yesterday?",["Yes, I was.","Yes, I did.","Yes, I were."]],["Was it raining when you left?",["No, it wasn’t.","No, it didn’t.","No, it weren’t."]]],
+   ask:["What were you doing at 7 pm yesterday?","Where were you living three years ago?"] },
+ { k:"pp", name:"Present Perfect", use:"Life experience, or a past action with a result now. No exact time.", sig:["ever","never","already","yet","just","since","for"],
+   pos:["I[’ve tried] rakija.","She [has visited] Niš twice."],
+   neg:["I [haven’t been] to Zlatibor.","He [hasn’t found] a flat yet."],
+   q:["[Have] you ever [seen] the Danube at night?","How many cities [have] you [visited]?"],
+   sh:["Yes, I [have]. / No, I [haven’t].","Yes, she [has]. / No, she [hasn’t]."],
+   extra:"<b>have / has</b> + V3: be → <b>been</b> · see → <b>seen</b> · eat → <b>eaten</b> · find → <b>found</b> · try → <b>tried</b>",
+   negP:[["I’ve learned the Cyrillic alphabet.","I haven’t learned the Cyrillic alphabet."],["She has found a new job.","She hasn’t found a new job."]],
+   qP:[["They’ve been to Zlatibor.","ever?","Have they ever been to Zlatibor?"],["You’ve lived here for two years.","how long?","How long have you lived here?"]],
+   saP:[["Have you ever eaten burek?",["Yes, I have.","Yes, I did.","Yes, I ate."]],["Has your friend visited you yet?",["No, she hasn’t.","No, she didn’t.","No, she doesn’t."]]],
+   ask:["Have you ever been to a slava?","What is the most beautiful place you’ve seen in Serbia?"] },
+ { k:"gt", name:"be going to", use:"Plans you made before. Or a prediction when you can see something.", sig:["tonight","tomorrow","next week","this summer","Look!"],
+   pos:["I[’m going to visit] Novi Sad.","Look at the sky! It[’s going to rain]."],
+   neg:["We [aren’t going to cook] tonight.","She [isn’t going to move]."],
+   q:["[Are] you [going to take] the train?","What [are] you [going to buy]?"],
+   sh:["Yes, I [am]. / No, I[’m not]."],
+   extra:"<b>am / is / are</b> + <b>going to</b> + verb",
+   negP:[["We’re going to stay in Belgrade for the holidays.","We aren’t going to stay in Belgrade for the holidays."],["He’s going to learn to drive.","He isn’t going to learn to drive."]],
+   qP:[["She’s going to visit the fortress.","when?","When is she going to visit the fortress?"],["They’re going to buy a car.","why?","Why are they going to buy a car?"]],
+   saP:[["Are you going to travel this summer?",["Yes, I am.","Yes, I do.","Yes, I going."]],["Is it going to rain?",["No, it isn’t.","No, it doesn’t.","No, it not."]]],
+   ask:["What are you going to do this weekend?","Where are you going to go on your next holiday?"] },
+ { k:"will", name:"will", use:"A decision right now, an opinion about the future, a promise or an offer.", sig:["I think","maybe","probably","I’m sure","I hope"],
+   pos:["I[’ll help] you with the bags.","I think it[’ll be] cold tomorrow."],
+   neg:["I [won’t forget].","It [won’t take] long."],
+   q:["[Will] you [come] to the party?","What [will] you [order]?"],
+   sh:["Yes, I [will]. / No, I [won’t]."],
+   extra:"<b>will</b> + verb · will not = <b>won’t</b> · “I <b>don’t think</b> it will…” (not “I think it won’t”)",
+   negP:[["The shop will be open on Sunday.","The shop won’t be open on Sunday."],["I think they’ll like the city.","I don’t think they’ll like the city."]],
+   qP:[["She’ll call the landlord.","when?","When will she call the landlord?"],["Prices will go up.","why?","Why will prices go up?"]],
+   saP:[["Will you be at home tonight?",["Yes, I will.","Yes, I am.","Yes, I’ll."]],["Will it be sunny tomorrow?",["No, it won’t.","No, it isn’t.","No, it willn’t."]]],
+   ask:["Do you think you will speak Serbian well in a year?","What will Belgrade look like in 20 years?"] }
+];
+const NAME = Object.fromEntries(TENSES.map(t => [t.k, t.name]));
+
+/* timeline icon */
+function tl(kind) {
+  const c = 'var(--c)';
+  let s = `<line x1="6" y1="22" x2="214" y2="22" stroke="#D8CFC3" stroke-width="3" stroke-linecap="round"/>
+           <line x1="130" y1="10" x2="130" y2="34" stroke="#1D2738" stroke-width="2.5"/>
+           <text x="130" y="8" font-size="9" font-weight="800" text-anchor="middle" fill="#667085" font-family="Onest">NOW</text>`;
+  const wave = (a, b) => { let d = `M${a} 22`; for (let x = a; x < b; x += 8) d += ` q2 -8 4 0 q2 8 4 0`; return `<path d="${d}" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round"/>`; };
+  const dot = (x, r = 6) => `<circle cx="${x}" cy="22" r="${r}" fill="${c}"/>`;
+  const cross = x => `<path d="M${x-6} 16 l12 12 M${x+6} 16 l-12 12" stroke="${c}" stroke-width="3" stroke-linecap="round"/>`;
+  if (kind === 'ps') s += [30, 58, 86, 114, 146, 174, 202].map(x => dot(x, 4.5)).join('');
+  if (kind === 'pc') s += wave(106, 154);
+  if (kind === 'pas') s += dot(60);
+  if (kind === 'pac') s += wave(36, 92) + cross(64);
+  if (kind === 'pp') s += `<path d="M50 22 Q90 -4 130 22" fill="none" stroke="${c}" stroke-width="3" stroke-dasharray="5 4"/>` + dot(50, 4.5) + dot(130);
+  if (kind === 'gt') s += dot(130, 4.5) + `<path d="M136 22 H186" stroke="${c}" stroke-width="3" stroke-dasharray="5 4"/><path d="M182 15 l9 7 -9 7" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
+  if (kind === 'will') s += dot(180);
+  return `<svg class="tl" viewBox="0 0 220 40" aria-hidden="true">${s}</svg>`;
+}
+
+/* ---------- warm-up ---------- */
+[
+  ["What do you usually do on Saturdays?", "ps"],
+  ["What are you learning these days?", "pc"],
+  ["When did you first visit Serbia?", "pas"],
+  ["What were you doing at this time yesterday?", "pac"],
+  ["Have you ever tried burek for breakfast?", "pp"],
+  ["What are you going to do this weekend?", "gt"],
+  ["Do you think you will travel around Serbia next year?", "will"],
+  ["What is your favorite place in your city?", "ps"]
+].forEach(([q, t], i) => {
+  const b = el('button', 'qcard t-' + t, `<span class="n">${i + 1}</span><span class="q">${q}</span><span class="tg">?</span>`);
+  b.onclick = () => { const on = b.classList.toggle('on'); b.querySelector('.tg').textContent = on ? NAME[t] : '?'; };
+  $('#qgrid').append(b);
+});
+
+/* ---------- map + nav ---------- */
+const MAPEX = { ps:"I take the bus every day.", pc:"I’m waiting for the bus now.", pas:"I took a taxi yesterday.", pac:"I was waiting when it started to rain.", pp:"I’ve never driven in Belgrade.", gt:"I’m going to buy a bike next week.", will:"I think I’ll walk. It’s sunny!" };
+TENSES.forEach((t, i) => {
+  $('#mapGrid').append(el('a', 'tcard t-' + t.k, `<h3>${t.name}</h3>${tl(t.k)}<div class="use">${t.use}</div><div class="ex">${MAPEX[t.k]}</div>`));
+  const a = el('a', 'tn t-' + t.k, `${i + 1}. ${t.name}`); a.href = '#ten-' + t.k; $('#navT').append(a);
+  $('#pillsT').append(el('span', 't-' + t.k, t.name));
+});
+document.querySelectorAll('#mapGrid .tcard').forEach((a, i) => a.href = '#ten-' + TENSES[i].k);
+
+/* ---------- Part 1: tense by tense ---------- */
+TENSES.forEach((t, i) => {
+  const n = `${i + 1} / ${TENSES.length}`;
+  const rule = el('section', 'track t-' + t.k);
+  rule.id = 'ten-' + t.k;
+  rule.innerHTML = `
+    <div class="thead"><span class="num">Tense ${n}</span><h2><span class="c">${t.name}</span></h2></div>
+    <div class="rule">
+      <div class="side">
+        <div class="lab">When do we use it?</div>
+        <div class="use">${t.use}</div>
+        ${tl(t.k)}
+        <div class="lab">Clue words</div>
+        <div class="sig">${t.sig.map(s => `<span>${s}</span>`).join('')}</div>
+      </div>
+      <div>
+        <div class="forms">
+          <div class="fr"><div class="fl"><i>+</i>Positive</div><div class="fx">${t.pos.map(x => `<div>${hl(x)}</div>`).join('')}</div></div>
+          <div class="fr"><div class="fl"><i>−</i>Negative</div><div class="fx">${t.neg.map(x => `<div>${hl(x)}</div>`).join('')}</div></div>
+          <div class="fr"><div class="fl"><i>?</i>Question</div><div class="fx">${t.q.map(x => `<div>${hl(x)}</div>`).join('')}</div></div>
+          <div class="fr"><div class="fl"><i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Short answer</div><div class="fx">${t.sh.map(x => `<div>${hl(x)}</div>`).join('')}</div></div>
+        </div>
+        <div class="extra">${t.extra}</div>
+      </div>
+    </div>`;
+  const prac = el('section', 'track t-' + t.k);
+  prac.innerHTML = `
+    <div class="thead"><span class="num">Tense ${n} · Practice</span><h2><span class="c">${t.name}</span>: your turn</h2></div>
+    <div class="prac">
+      <div class="pbox"><h3><i>−</i>Make it negative</h3>${t.negP.map(([a, b]) => `<button class="rv">${a}<div class="a">${b}</div></button>`).join('')}</div>
+      <div class="pbox"><h3><i>?</i>Make a question</h3>${t.qP.map(([a, cue, b]) => `<button class="rv">${a}<span class="cue">(${cue})</span><div class="a">${b}</div></button>`).join('')}</div>
+      <div class="pbox"><h3><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Choose the short answer</h3>${t.saP.map(([q, o]) => `<div class="sa" data-a="${o[0]}"><div class="q">${q}</div><div class="opts">${shuffle(o).map(x => `<button>${x}</button>`).join('')}</div></div>`).join('')}</div>
+      <div class="pbox"><h3><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></i>Ask and answer</h3>${t.ask.map(q => `<div class="ask">${q}</div>`).join('')}</div>
+    </div>`;
+  $('#tenses').append(rule, prac);
+});
+document.querySelectorAll('.rv').forEach(b => b.onclick = () => b.classList.toggle('on'));
+document.querySelectorAll('.sa').forEach(sa => sa.querySelectorAll('button').forEach(b => b.onclick = () => {
+  if (b.textContent === sa.dataset.a) { sa.querySelectorAll('button').forEach(x => x.classList.remove('no')); b.classList.add('yes'); }
+  else { b.classList.add('no'); bump(b); }
+}));
+
+/* ---------- Mix 1: signal words ---------- */
+const BUCKETS = [["ps","Present Simple"],["pc","Present Continuous"],["pas","Past Simple"],["pac","Past Continuous"],["pp","Present Perfect"],["fut","Future: going to / will"]];
+const WORDS = [["usually","ps"],["every Saturday","ps"],["once a week","ps"],["right now","pc"],["at the moment","pc"],["these days","pc"],["yesterday","pas"],["two years ago","pas"],["last summer","pas"],["while…","pac"],["at 9 pm last night","pac"],["ever","pp"],["so far","pp"],["since 2023","pp"],["next summer","fut"],["I think… / probably","fut"],["in ten years","fut"]];
+let selChip = null, sorted = 0;
+function buildSort() {
+  sorted = 0; selChip = null; document.body.classList.remove('picking');
+  $('#pool').innerHTML = ''; $('#buckets').innerHTML = '';
+  shuffle(WORDS).forEach(([w, k]) => {
+    const c = el('button', 'chip', w); c.dataset.k = k;
+    c.onclick = () => {
+      if (c.classList.contains('placed')) return;
+      document.querySelectorAll('.chip.sel').forEach(x => x !== c && x.classList.remove('sel'));
+      selChip = c.classList.toggle('sel') ? c : null;
+      document.body.classList.toggle('picking', !!selChip);
+    };
+    $('#pool').append(c);
+  });
+  BUCKETS.forEach(([k, n]) => {
+    const b = el('button', 'bucket t-' + (k === 'fut' ? 'gt' : k), `<h3>${n}</h3><div class="in"></div>`);
+    b.onclick = () => {
+      if (!selChip) return;
+      if (selChip.dataset.k === k) {
+        selChip.classList.remove('sel'); selChip.classList.add('placed');
+        b.querySelector('.in').append(selChip); selChip = null; sorted++;
+        document.body.classList.remove('picking'); sortScore();
+      } else { bump(selChip); bump(b); }
+    };
+    $('#buckets').append(b);
+  });
+  sortScore();
+}
+const sortScore = () => $('#sortScore').textContent = `${sorted} / ${WORDS.length}`;
+$('#sortReset').onclick = buildSort; buildSort();
+
+/* ---------- Mix 2: split lines ---------- */
+const PAIRS = [
+  ["Every Saturday I", "buy fruit at the green market.", "ps"],
+  ["Can I call you back? I", "am standing in a long line at the post office.", "pc"],
+  ["Last spring we", "took a boat trip on the Danube.", "pas"],
+  ["I was waiting for the bus", "when it started to rain.", "pac"],
+  ["I have never", "seen so many cafés on one street.", "pp"],
+  ["We’ve booked the tickets, so on Friday we", "are going to take the train to Novi Sad.", "gt"],
+  ["Those bags look heavy. I", "’ll help you.", "will"]
+];
+let mSel = null, mDone = [];
+function buildMatch() {
+  mSel = null; mDone = [];
+  $('#mL').innerHTML = ''; $('#mR').innerHTML = '';
+  PAIRS.forEach((p, i) => { const b = el('button', 'mi t-' + p[2], p[0]); b.dataset.i = i; b.dataset.s = 'l'; $('#mL').append(b); });
+  shuffle(PAIRS.map((p, i) => [p, i])).forEach(([p, i]) => { const b = el('button', 'mi t-' + p[2], p[1]); b.dataset.i = i; b.dataset.s = 'r'; $('#mR').append(b); });
+  document.querySelectorAll('.mi').forEach(b => b.onclick = () => pickM(b));
+  drawLines(); matchScore();
+}
+function pickM(b) {
+  if (b.classList.contains('done')) return;
+  if (!mSel || mSel.dataset.s === b.dataset.s) {
+    document.querySelectorAll('.mi.sel').forEach(x => x.classList.remove('sel'));
+    if (mSel === b) { mSel = null; return; }
+    mSel = b; b.classList.add('sel'); return;
+  }
+  if (mSel.dataset.i === b.dataset.i) {
+    [mSel, b].forEach(x => { x.classList.remove('sel'); x.classList.add('done'); });
+    mDone.push(+b.dataset.i); mSel = null; drawLines(); matchScore();
+  } else {
+    const a = mSel; [a, b].forEach(x => x.classList.add('bad'));
+    setTimeout(() => [a, b].forEach(x => x.classList.remove('bad', 'sel')), 600);
+    mSel = null;
+  }
+}
+function drawLines() {
+  const box = $('#match').getBoundingClientRect();
+  $('#lines').innerHTML = mDone.map(i => {
+    const l = $(`#mL .mi[data-i="${i}"]`).getBoundingClientRect(), r = $(`#mR .mi[data-i="${i}"]`).getBoundingClientRect();
+    const x1 = l.right - box.left, y1 = l.top + l.height / 2 - box.top, x2 = r.left - box.left, y2 = r.top + r.height / 2 - box.top, mx = (x1 + x2) / 2;
+    return `<path d="M${x1} ${y1} C${mx} ${y1} ${mx} ${y2} ${x2} ${y2}" fill="none" stroke="var(--${PAIRS[i][2]})" stroke-width="4" stroke-linecap="round"/>`;
+  }).join('');
+}
+const matchScore = () => $('#matchScore').textContent = `${mDone.length} / ${PAIRS.length}`;
+$('#matchReset').onclick = buildMatch; buildMatch();
+addEventListener('resize', drawLines);
+document.fonts && document.fonts.ready.then(drawLines);
+
+/* ---------- Mix 3: story ---------- */
+function renderGaps(target, text) {
+  target.innerHTML = text.replace(/\{([^}]+)\}/g, (m, inner) => {
+    const opts = inner.split('|'); const right = opts.find(o => o.endsWith('*')).slice(0, -1);
+    return `<span class="gap" data-a="${right}">${opts.map(o => `<button>${o.replace('*', '')}</button>`).join('')}<span class="ans">${right}</span></span>`;
+  });
+  target.querySelectorAll('.gap button').forEach(b => b.onclick = () => {
+    const g = b.closest('.gap');
+    if (b.textContent === g.dataset.a) g.classList.add('solved');
+    else { b.classList.add('no'); bump(b); }
+  });
+}
+renderGaps($('#story1'), "I {moved*|have moved} to Belgrade two years ago. At first everything was new. I {didn’t know*|haven’t known} any Serbian, and I often {got*|have got} lost. One day I {was looking*|looked} for the post office when an old man {stopped*|was stopping} and {showed*|was showing} me the way. He even {walked*|was walking} with me to the door!");
+renderGaps($('#story2'), "Now I {have*|am having} a small flat near the center. I {go*|am going} to the green market every Saturday, and this year I {am learning*|learn} Serbian with a teacher. I {have made*|made} a lot of friends since I came here. Next month my sister {is going to visit*|visited} me: she {bought*|has bought} her plane ticket yesterday. I think she {will love*|loves} Belgrade.");
+
+/* ---------- Mix 4: wrong notes ---------- */
+[
+  ["I", "am liking", "like", "Serbian food."],
+  ["Last year we", "have visited", "visited", "Niš."],
+  ["He", "don’t speak", "doesn’t speak", "Serbian."],
+  ["", "While I walked", "While I was walking", "in the park, I met my neighbor."],
+  ["Have you ever", "try", "tried", "kajmak?"],
+  ["Look at those clouds!", "It will rain", "It’s going to rain", "."],
+  ["Where did you", "bought", "buy", "this coat?"],
+  ["", "Are you go", "Are you going", "to the market tomorrow?"]
+].forEach(([a, bad, fix, b], i) => {
+  const w = el('button', 'wn', `<span class="n">${i + 1}</span><span>${a} <span class="bad">${bad}</span><span class="fix">${fix}</span>${b.startsWith('.') ? '' : ' '}${b}</span>`);
+  w.onclick = () => w.classList.toggle('on');
+  $('#wlist').append(w);
+});
+
+/* ---------- Mix 5: typed ---------- */
+const GAPS = [
+  ["My neighbor Milan", "live", ["lives"], "in the flat next to mine. Every Sunday he"],
+  ["", "cook", ["cooks"], "a big lunch for his family. Right now he"],
+  ["", "make", ["is making"], "sarma, and the whole building"],
+  ["", "smell", ["smells"], "amazing. Since September he"],
+  ["", "teach", ["has taught"], "me twenty Serbian words. Last Sunday he"],
+  ["", "invite", ["invited"], "me for lunch. When I"],
+  ["", "arrive", ["arrived"], ", his kids"],
+  ["", "play", ["were playing"], "in the yard. Look! Now he"],
+  ["", "carry", ["is carrying"], "a big pot to my door. I think it"],
+  ["", "be", ["will be"], "a long lunch! After lunch we"],
+  ["", "walk", ["are going to walk", "are walking"], "by the river: we planned it yesterday."]
+];
+const norm = s => s.toLowerCase().replace(/[’`]/g, "'").replace(/\s+/g, ' ').trim()
+  .replace(/^(we|he|i|it|they|milan|the building|his kids)(\s+|(?='))/, '')
+  .replace(/^'s /, 'is ').replace(/^'re /, 'are ').replace(/^'ve /, 'have ').replace(/^'ll /, 'will ').replace(/^'m /, 'am ');
+(function () {
+  let html = '';
+  GAPS.forEach(([pre, verb, ans, post], i) => {
+    html += (pre ? pre + ' ' : '') + `<span class="inp" data-i="${i}"><input aria-label="gap ${i + 1}" autocomplete="off" spellcheck="false"><span class="hint">(${verb})</span></span>` + (post.startsWith(',') ? '' : ' ') + post + ' ';
+  });
+  $('#typed').innerHTML = html;
+  $('#typed').querySelectorAll('input').forEach(inp => {
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') checkGap(inp.parentElement); });
+    inp.addEventListener('input', () => inp.parentElement.classList.remove('ok', 'no'));
+  });
+})();
+function checkGap(span) {
+  const v = norm(span.querySelector('input').value); if (!v) { span.classList.remove('ok', 'no'); return false; }
+  const ok = GAPS[span.dataset.i][2].some(a => norm(a) === v);
+  span.classList.toggle('ok', ok); span.classList.toggle('no', !ok); return ok;
+}
+$('#tCheck').onclick = () => { let n = 0; document.querySelectorAll('#typed .inp').forEach(s => { if (checkGap(s)) n++; }); $('#tScore').textContent = `${n} / ${GAPS.length}`; };
+$('#tShow').onclick = () => { document.querySelectorAll('#typed .inp').forEach(s => { s.querySelector('input').value = GAPS[s.dataset.i][2][0]; checkGap(s); }); $('#tScore').textContent = ''; };
+
+/* ---------- Mix 6: questions ---------- */
+[
+  ["How often do you take the bus?", "ps"],
+  ["What are you cooking tonight?", "pc"],
+  ["When did you come to Serbia?", "pas"],
+  ["What were you doing at 9 pm yesterday?", "pac"],
+  ["Have you ever been to Novi Sad?", "pp"],
+  ["Where are you going to spend the holidays?", "gt"]
+].forEach(([q, t], i) => {
+  const words = q.split(' ');
+  const row = el('div', 'brow t-' + t, `<span class="n">${i + 1}</span><div class="out"></div><div class="bank"></div>`);
+  const out = row.querySelector('.out'), bank = row.querySelector('.bank');
+  let order = shuffle(words); while (order.join(' ') === q) order = shuffle(words);
+  order.forEach(w => {
+    const c = el('button', 'wchip', w);
+    c.onclick = () => {
+      if (row.classList.contains('ok')) return;
+      (c.parentElement === bank ? out : bank).append(c);
+      row.classList.remove('no');
+      if (!bank.children.length) {
+        const got = [...out.querySelectorAll('.wchip')].map(x => x.textContent).join(' ');
+        if (got === q) { row.classList.add('ok'); out.append(el('span', 'tt', NAME[t])); }
+        else row.classList.add('no');
+      }
+    };
+    bank.append(c);
+  });
+  $('#blist').append(row);
+});
+
+/* ---------- Mix 7: timeline ---------- */
+[
+  ["pas", "Back then", "When I first came to Serbia, I…", "…didn’t understand the menus in cafés."],
+  ["pac", "That moment", "One day I was … when…", "I was walking in Zemun when I found a lovely little restaurant."],
+  ["pp",  "Up to now", "I’ve already… / I’ve never…", "I’ve already visited Novi Sad. I’ve never been to Zlatibor."],
+  ["ps",  "Usually", "On weekends I usually…", "…walk by the river or meet friends."],
+  ["pc",  "These days", "These days I’m…", "…trying to speak more Serbian in shops."],
+  ["gt",  "The plan", "Next summer I’m going to…", "…travel to the mountains by train."],
+  ["will","My guess", "In five years I think I’ll…", "…know the city like a local."]
+].forEach(([k, lab, st, eg]) => $('#speak').append(el('div', 'sp t-' + k, `<div class="lab">${lab} · ${NAME[k]}</div><div class="st">${st}</div><div class="eg">${eg}</div>`)));
+
+/* ---------- Mix 8: roulette ---------- */
+const HINT = { ps:"I usually… / Do you…?", pc:"Right now I’m… / Are you…?", pas:"Last week I… / Did you…?", pac:"At 8 pm yesterday I was… / Were you…?", pp:"I’ve never… / Have you ever…?", gt:"Next week I’m going to… / Are you going to…?", will:"I think… will… / Will you…?" };
+const TOPICS = ["the weather","Serbian food","the bus","the green market","your neighbors","learning Serbian","cafés","your weekend","the holidays","shopping","your work","a trip in Serbia","prices","the river","your flat","friends"];
+let spinning = false;
+$('#spin').onclick = () => {
+  if (spinning) return; spinning = true;
+  const keys = Object.keys(NAME); let n = 0, k;
+  const tick = () => {
+    k = keys[Math.floor(Math.random() * keys.length)];
+    $('#slotT').style.setProperty('--c', `var(--${k})`);
+    $('#rT').textContent = NAME[k]; $('#rP').textContent = TOPICS[Math.floor(Math.random() * TOPICS.length)]; $('#rH').textContent = '';
+    if (++n < 16) setTimeout(tick, 40 + n * 9);
+    else { $('#rH').textContent = HINT[k]; spinning = false; }
+  };
+  tick();
+};
+</script>
+</body>
+</html>
