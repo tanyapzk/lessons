@@ -90,29 +90,30 @@ b.hl{color:var(--c);font-weight:800}
 .tcard .ex{font-size:16px;font-style:italic;background:color-mix(in srgb,var(--c) 9%,white);border-radius:10px;padding:6px 10px}
 
 /* rule screen */
-.rule{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.5fr);gap:20px;align-items:stretch}
-.rule .side{background:color-mix(in srgb,var(--c) 10%,white);border-radius:24px;padding:24px 26px;display:flex;flex-direction:column;gap:14px}
-.rule .side .lab{font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--c)}
-.rule .side .use{font-size:23px;font-weight:700;line-height:1.3}
-.rule .side svg.tl{width:100%;height:56px}
+.ruletop{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1.2fr);gap:24px;align-items:center;background:color-mix(in srgb,var(--c) 10%,white);border-radius:22px;padding:16px 24px;margin-bottom:14px}
+.ruletop .lab{font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);margin-bottom:4px}
+.ruletop .use{font-size:21px;font-weight:700;line-height:1.3}
+.ruletop svg.tl{width:100%;height:52px}
 .sig{display:flex;flex-wrap:wrap;gap:6px}
 .sig span{font-size:16px;font-weight:700;padding:3px 11px;border-radius:99px;background:#fff;color:var(--c);box-shadow:inset 0 0 0 1.5px var(--c)}
-.forms{background:var(--card);border-radius:24px;padding:8px 26px;box-shadow:0 14px 40px -28px rgba(29,39,56,.35)}
-.forms .fr{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}
-.forms .fr:first-child{border-top:0}
+.forms{background:var(--card);border-radius:24px;padding:4px 24px;box-shadow:0 14px 40px -28px rgba(29,39,56,.35)}
+.forms .fr{display:grid;grid-template-columns:160px minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.forms .fr.fh{border-top:0;padding:12px 0 6px;font-family:var(--f-h);font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--c)}
+.forms .fr.fh div:last-child{display:inline-flex}
+.forms .fr > .fx:last-of-type{padding-left:20px;border-left:3px solid color-mix(in srgb,var(--c) 25%,white)}
+.forms .fr.fh > div:last-child, .forms .fr.fn > div:last-child{padding-left:20px;border-left:3px solid color-mix(in srgb,var(--c) 25%,white)}
 .forms .fl{font-weight:800;font-size:16px;color:var(--muted);display:flex;align-items:center;gap:10px}
-.forms .fl i{width:32px;height:32px;border-radius:50%;background:var(--c);color:#fff;font-style:normal;display:grid;place-items:center;font-size:20px;font-weight:800;flex:none}
-.forms .fx{font-size:22px;line-height:1.45}
-.forms .fx div + div{margin-top:2px}
-.extra{margin-top:12px;font-size:17px;color:var(--muted);font-weight:600}
-.extra b{color:var(--ink)}
+.forms .fl i{width:30px;height:30px;border-radius:50%;background:var(--c);color:#fff;font-style:normal;display:grid;place-items:center;font-size:19px;font-weight:800;flex:none}
+.forms .fx{font-size:20px;line-height:1.4}
+.extra{font-size:16px;color:var(--muted);font-weight:600;line-height:1.4}
+.extra b{color:var(--ink)} .extra s{color:var(--no)}
 
 /* practice screen */
-.prac{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.pbox{background:var(--card);border-radius:22px;padding:18px 22px;box-shadow:0 10px 30px -24px rgba(29,39,56,.4);display:flex;flex-direction:column;gap:10px}
+.prac{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.pbox{background:var(--card);border-radius:22px;padding:14px 20px;box-shadow:0 10px 30px -24px rgba(29,39,56,.4);display:flex;flex-direction:column;gap:10px}
 .pbox h3{font-family:var(--f-h);font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--c);display:flex;align-items:center;gap:10px}
-.pbox h3 i{width:28px;height:28px;border-radius:50%;background:var(--c);color:#fff;font-style:normal;display:grid;place-items:center;font-size:17px;flex:none}
-.rv{text-align:left;border-radius:14px;background:var(--soft);padding:10px 14px;font-size:20px;font-weight:600;line-height:1.35}
+.pbox h3 i{width:30px;height:30px;border-radius:50%;font-weight:800;text-transform:none;background:var(--c);color:#fff;font-style:normal;display:grid;place-items:center;font-size:17px;flex:none}
+.rv{text-align:left;border-radius:14px;background:var(--soft);padding:8px 14px;font-size:20px;font-weight:600;line-height:1.35}
 .rv .cue{color:var(--muted);font-weight:700;font-size:17px;margin-left:6px}
 .rv .a{display:none;color:var(--ok);font-weight:800;margin-top:4px}
 .rv.on{background:color-mix(in srgb,var(--ok) 10%,white)}
@@ -123,6 +124,9 @@ b.hl{color:var(--c);font-weight:800}
 .sa .opts button{font-size:18px;font-weight:700;padding:4px 12px;border-radius:10px;background:#fff}
 .sa .opts button.no{color:var(--no);text-decoration:line-through;background:color-mix(in srgb,var(--no) 10%,white)}
 .sa .opts button.yes{color:#fff;background:var(--ok)}
+.pbox.wide{grid-column:1/-1}
+.be3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pbox.wide h3 i{font-size:14px}
 .ask{font-size:21px;font-weight:700;padding:8px 0 8px 16px;border-left:4px solid var(--c)}
 
 /* sorting */
@@ -211,7 +215,8 @@ body.picking .bucket{border-style:solid}
   .hero{grid-template-columns:1fr;min-height:auto;gap:30px}
   .map,.speak{grid-template-columns:repeat(2,minmax(0,1fr))}
   .buckets{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .rule{grid-template-columns:1fr}
+  .ruletop{grid-template-columns:1fr}
+  .be3{grid-template-columns:1fr}
   .blist{grid-template-columns:1fr}
   .match{gap:12px 40px}
 }
@@ -219,6 +224,8 @@ body.picking .bucket{border-style:solid}
   body{font-size:18px;padding:0 16px 100px}
   .qgrid,.wlist,.map,.speak,.roul,.buckets,.prac{grid-template-columns:1fr}
   .forms .fr{grid-template-columns:1fr;gap:6px}
+  .forms .fr > .fx:last-of-type,.forms .fr.fh > div:last-child,.forms .fr.fn > div:last-child{padding-left:0;border-left:0}
+  .forms .fr.fh{display:none}
   .match{gap:10px 22px}
   .mi{font-size:16px;padding:10px 12px}
   .story,.typed{font-size:20px}
@@ -472,39 +479,63 @@ TENSES.forEach((t, i) => {
 });
 document.querySelectorAll('#mapGrid .tcard').forEach((a, i) => a.href = '#ten-' + TENSES[i].k);
 
+/* ---------- to be inside each tense ---------- */
+const BE = {
+ ps:{ title:"to be", pos:["I[’m] at home.","The shops [are] open."], neg:["I[’m not] tired.","The bank [isn’t] open today."], q:["[Is] the market far?","Where [are] you from?"], sh:["Yes, it [is]. / No, it [isn’t]."],
+      note:"I <b>am</b> · he / she / it <b>is</b> · you / we / they <b>are</b> · No do/does: <b>Are</b> you…? (not <s>Do you be…?</s>)",
+      p:[["The museum is open on Mondays.","negative","The museum isn’t open on Mondays."],["You are from Novi Sad.","question","Are you from Novi Sad?"],["Is your flat big?","short answer: no","No, it isn’t."]] },
+ pc:{ title:"to be = the helper", pos:["I [am] working.","She [is] / They [are] working."], neg:["I[’m not] working.","He [isn’t] / We [aren’t] working."], q:["[Am] I late?","[Is] he / [Are] you working?"], sh:["Yes, he [is]. / No, they [aren’t]."],
+      note:"No to be = mistake: <s>I working</s> → I<b>’m</b> working · <s>She cooking</s> → She<b>’s</b> cooking",
+      p:[["She is working today.","negative","She isn’t working today."],["They are waiting outside.","question","Are they waiting outside?"],["Are you listening?","short answer: yes","Yes, I am."]] },
+ pas:{ title:"to be", pos:["I [was] tired.","They [were] at the market."], neg:["It [wasn’t] expensive.","We [weren’t] at home."], q:["[Was] the bus late?","Where [were] you?"], sh:["Yes, it [was]. / No, we [weren’t]."],
+      note:"I / he / she / it <b>was</b> · you / we / they <b>were</b> · No did: <b>Were</b> you…? (not <s>Did you be…?</s>)",
+      p:[["The tickets were cheap.","negative","The tickets weren’t cheap."],["Milan was at the market.","question","Was Milan at the market?"],["Were you tired after the trip?","short answer: yes","Yes, I was."]] },
+ pac:{ title:"to be = the helper", pos:["I / she [was] walking.","You / we / they [were] walking."], neg:["I [wasn’t] walking.","They [weren’t] walking."], q:["[Was] she walking?","[Were] they walking?"], sh:["Yes, she [was]. / No, they [weren’t]."],
+      note:"I / he / she / it <b>was</b> + -ing · you / we / they <b>were</b> + -ing",
+      p:[["I was sleeping at 10 pm.","negative","I wasn’t sleeping at 10 pm."],["They were having lunch.","question","Were they having lunch?"],["Was it snowing?","short answer: no","No, it wasn’t."]] },
+ pp:{ title:"to be", pos:["I[’ve been] to Novi Sad.","She [has been] busy this week."], neg:["I [haven’t been] to Niš.","It [hasn’t been] easy."], q:["[Have] you ever [been] to Zlatibor?","How long [have] you [been] here?"], sh:["Yes, I [have]. / No, I [haven’t]."],
+      note:"be → <b>been</b> · <b>been to</b> a place = visited and came back",
+      p:[["I’ve been to the fortress.","negative","I haven’t been to the fortress."],["She has been here before.","question","Has she been here before?"],["Have you ever been to Niš?","short answer: no","No, I haven’t."]] },
+ gt:{ title:"to be", pos:["It[’s going to be] cold.","I[’m going to be] late."], neg:["We [aren’t going to be] at home.","It [isn’t going to be] easy."], q:["[Are] you [going to be] free on Friday?","Where [are] you [going to be]?"], sh:["Yes, I [am]. / No, I[’m not]."],
+      note:"am / is / are + going to + <b>be</b>",
+      p:[["It’s going to be hot tomorrow.","negative","It isn’t going to be hot tomorrow."],["You’re going to be at home.","question","Are you going to be at home?"],["Are they going to be late?","short answer: yes","Yes, they are."]] },
+ will:{ title:"to be", pos:["I[’ll be] at home.","It[’ll be] sunny."], neg:["The shop [won’t be] open.","It [won’t be] expensive."], q:["[Will] you [be] at the party?","When [will] it [be] ready?"], sh:["Yes, I [will]. / No, I [won’t]."],
+      note:"will + <b>be</b> (not <s>will is</s>, not <s>will are</s>)",
+      p:[["The bank will be open.","negative","The bank won’t be open."],["She’ll be at work.","question","Will she be at work?"],["Will you be free tomorrow?","short answer: yes","Yes, I will."]] }
+};
+const CHECK = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const cell = arr => `<div class="fx">${arr.map(x => `<div>${hl(x)}</div>`).join('')}</div>`;
+
 /* ---------- Part 1: tense by tense ---------- */
 TENSES.forEach((t, i) => {
-  const n = `${i + 1} / ${TENSES.length}`;
+  const n = `${i + 1} / ${TENSES.length}`, b = BE[t.k];
+  const row = (sym, lab, a, c) => `<div class="fr"><div class="fl"><i>${sym}</i>${lab}</div>${cell(a)}${cell(c)}</div>`;
   const rule = el('section', 'track t-' + t.k);
   rule.id = 'ten-' + t.k;
   rule.innerHTML = `
     <div class="thead"><span class="num">Tense ${n}</span><h2><span class="c">${t.name}</span></h2></div>
-    <div class="rule">
-      <div class="side">
-        <div class="lab">When do we use it?</div>
-        <div class="use">${t.use}</div>
-        ${tl(t.k)}
-        <div class="lab">Clue words</div>
-        <div class="sig">${t.sig.map(s => `<span>${s}</span>`).join('')}</div>
-      </div>
-      <div>
-        <div class="forms">
-          <div class="fr"><div class="fl"><i>+</i>Positive</div><div class="fx">${t.pos.map(x => `<div>${hl(x)}</div>`).join('')}</div></div>
-          <div class="fr"><div class="fl"><i>−</i>Negative</div><div class="fx">${t.neg.map(x => `<div>${hl(x)}</div>`).join('')}</div></div>
-          <div class="fr"><div class="fl"><i>?</i>Question</div><div class="fx">${t.q.map(x => `<div>${hl(x)}</div>`).join('')}</div></div>
-          <div class="fr"><div class="fl"><i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Short answer</div><div class="fx">${t.sh.map(x => `<div>${hl(x)}</div>`).join('')}</div></div>
-        </div>
-        <div class="extra">${t.extra}</div>
-      </div>
+    <div class="ruletop">
+      <div><div class="lab">When do we use it?</div><div class="use">${t.use}</div></div>
+      <div>${tl(t.k)}</div>
+      <div><div class="lab">Clue words</div><div class="sig">${t.sig.map(s => `<span>${s}</span>`).join('')}</div></div>
+    </div>
+    <div class="forms">
+      <div class="fr fh"><div></div><div>Most verbs</div><div>${b.title}</div></div>
+      ${row('+', 'Positive', t.pos, b.pos)}
+      ${row('−', 'Negative', t.neg, b.neg)}
+      ${row('?', 'Question', t.q, b.q)}
+      ${row(CHECK, 'Short answer', t.sh, b.sh)}
+      <div class="fr fn"><div></div><div class="extra">${t.extra}</div><div class="extra">${b.note}</div></div>
     </div>`;
   const prac = el('section', 'track t-' + t.k);
   prac.innerHTML = `
     <div class="thead"><span class="num">Tense ${n} · Practice</span><h2><span class="c">${t.name}</span>: your turn</h2></div>
     <div class="prac">
-      <div class="pbox"><h3><i>−</i>Make it negative</h3>${t.negP.map(([a, b]) => `<button class="rv">${a}<div class="a">${b}</div></button>`).join('')}</div>
-      <div class="pbox"><h3><i>?</i>Make a question</h3>${t.qP.map(([a, cue, b]) => `<button class="rv">${a}<span class="cue">(${cue})</span><div class="a">${b}</div></button>`).join('')}</div>
-      <div class="pbox"><h3><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Choose the short answer</h3>${t.saP.map(([q, o]) => `<div class="sa" data-a="${o[0]}"><div class="q">${q}</div><div class="opts">${shuffle(o).map(x => `<button>${x}</button>`).join('')}</div></div>`).join('')}</div>
+      <div class="pbox"><h3><i>−</i>Make it negative</h3>${t.negP.map(([a, c]) => `<button class="rv">${a}<div class="a">${c}</div></button>`).join('')}</div>
+      <div class="pbox"><h3><i>?</i>Make a question</h3>${t.qP.map(([a, cue, c]) => `<button class="rv">${a}<span class="cue">(${cue})</span><div class="a">${c}</div></button>`).join('')}</div>
+      <div class="pbox"><h3><i>${CHECK}</i>Choose the short answer</h3>${t.saP.map(([q, o]) => `<div class="sa" data-a="${o[0]}"><div class="q">${q}</div><div class="opts">${shuffle(o).map(x => `<button>${x}</button>`).join('')}</div></div>`).join('')}</div>
       <div class="pbox"><h3><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></i>Ask and answer</h3>${t.ask.map(q => `<div class="ask">${q}</div>`).join('')}</div>
+      <div class="pbox wide"><h3><i>be</i>With to be</h3><div class="be3">${b.p.map(([a, cue, c]) => `<button class="rv">${a}<span class="cue">(${cue})</span><div class="a">${c}</div></button>`).join('')}</div></div>
     </div>`;
   $('#tenses').append(rule, prac);
 });
