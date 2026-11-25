@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Resolution Playbook</title>
+<meta name="description" content="Conflict Management, Lesson 2: soft phrases and five steps to solve conflicts with customers and with your team.">
+<meta property="og:title" content="Conflict Management · Lesson 2">
+<meta property="og:description" content="Soft phrases and five steps to solve conflicts with customers and with your team.">
+<meta property="og:image" content="https://tanyapzk.github.io/vocabulary-app/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap">
+<style>
+:root{
+  --bg:#f7f5f0;--card:#fff;--line:#e2dfd7;--ink:#222220;--mute:#5c5c57;
+  --tau:#94806f;--ter:#b86248;--oli:#6b7a58;--tint:#eeece6;
+  --oli-soft:#e7eadf;--ter-soft:#f6e6df;--tau-soft:#efe9e3;
+  --serif:"Playfair Display",Georgia,serif;--sans:"Plus Jakarta Sans",system-ui,-apple-system,Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1f1e1c;--card:#2a2926;--line:#3d3b37;--ink:#f3f0ea;--mute:#b9b5ac;--tint:#34322e;
+  --tau:#b8a492;--ter:#d98a70;--oli:#9aab84;--oli-soft:#2f3529;--ter-soft:#3a2a24;--tau-soft:#332e29;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1f1e1c;--card:#2a2926;--line:#3d3b37;--ink:#f3f0ea;--mute:#b9b5ac;--tint:#34322e;
+  --tau:#b8a492;--ter:#d98a70;--oli:#9aab84;--oli-soft:#2f3529;--ter-soft:#3a2a24;--tau-soft:#332e29;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:46px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:clamp(18px,1.7vw,26px);line-height:1.36;-webkit-text-size-adjust:100%}
+h1,h2,h3,p{margin:0}
+h1,h2{font-family:var(--serif);font-weight:600;line-height:1.08;text-wrap:balance}
+h1{font-size:clamp(46px,6vw,88px)} h1 em{font-style:italic;font-weight:500;color:var(--tau)}
+h2{font-size:clamp(28px,2.9vw,46px)}
+button{font:inherit;color:inherit;cursor:pointer}
+[hidden]{display:none!important}
+
+.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:8px max(16px,3vw);font-size:14px;color:var(--mute)}
+.top .bar{flex:1;height:5px;background:var(--tint);border-radius:3px;overflow:hidden}
+.top .bar i{display:block;height:100%;width:0;background:var(--tau);transition:width .2s}
+.top .where{min-width:10em;text-align:right;white-space:nowrap}
+
+.scr{min-height:calc(100vh - 42px);min-height:calc(100svh - 42px);display:flex;flex-direction:column;justify-content:center;gap:.55em;padding:2.5vh max(16px,4vw);max-width:1300px;margin:0 auto;border-bottom:1px solid var(--line)}
+.part{font-size:.6em;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--oli)}
+.tag{font-size:.6em;letter-spacing:.14em;text-transform:uppercase;color:var(--tau);font-weight:700}
+.lead{font-size:1.06em}
+.q{color:var(--mute)}
+.grid{display:grid;gap:.5em}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.c{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:.5em .8em}
+.c b{display:block}
+.c small{display:block;font-size:.8em;color:var(--mute);margin-top:.12em}
+.c.tau{border-color:var(--tau)}.c.oli{border-color:var(--oli)}.c.ter{border-color:var(--ter)}
+.c.soft{background:var(--tau-soft);border-color:transparent}
+.num{font-family:var(--serif);font-size:2em;line-height:1;color:var(--tau)}
+.head{display:flex;align-items:baseline;gap:.4em}
+.say{font-weight:600}
+.ic{width:1em;height:1em;vertical-align:-.14em;flex:none}
+.bad{color:var(--ter)}.good{color:var(--oli)}
+.rv{transition:opacity .3s,transform .3s}
+.rv.off{opacity:0;visibility:hidden;transform:translateY(6px)}
+.btn{background:none;border:2px solid var(--tau);color:var(--tau);border-radius:999px;padding:.18em .85em;font-size:.68em;font-weight:600;justify-self:start;align-self:flex-start}
+.btn:disabled{opacity:.35;cursor:default}
+.complaint{display:flex;gap:.6em;align-items:flex-start;background:var(--ter-soft);border-radius:18px;padding:.5em .85em}
+.complaint svg{width:1.15em;height:1.15em;color:var(--ter);flex:none;margin-top:.15em}
+.complaint p{font-style:italic}
+.complaint .who{font-style:normal;font-size:.62em;letter-spacing:.12em;text-transform:uppercase;color:var(--ter);font-weight:700;display:block}
+.your{border-color:var(--oli);background:var(--oli-soft)}
+.your b{color:var(--oli)}
+
+/* cause cards (tap to mark) */
+.mark{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:.5em .8em;text-align:left;display:grid;gap:.1em;transition:background .2s,border-color .2s}
+.mark small{font-size:.78em;color:var(--mute)}
+.mark.on{border-color:var(--oli);background:var(--oli-soft)}
+.mark .chk{display:none;color:var(--oli)}
+.mark.on .chk{display:inline}
+
+/* story */
+.frames{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5em}
+.frame{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:.55em .8em;display:grid;gap:.3em;align-content:start;text-align:left;transition:border-color .2s,background .2s}
+.frame:hover{border-color:var(--tau)}
+.frame .t{font-size:.6em;letter-spacing:.12em;text-transform:uppercase;color:var(--tau);font-weight:700}
+.frame.pick{border-color:var(--tau);background:var(--tau-soft)}
+.frame.key{border-color:var(--ter);background:var(--ter-soft)}
+
+/* formula */
+.formula{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.5em;font-weight:700;font-size:1.1em}
+.formula .box{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:.45em .8em;text-align:center;min-width:7em}
+.formula .box small{display:block;font-weight:400;font-size:.7em;color:var(--mute)}
+.formula .box.hot{border-color:var(--ter);background:var(--ter-soft)}
+.formula .op{font-family:var(--serif);font-size:1.5em;color:var(--tau)}
+
+/* spot */
+.spot{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45em}
+.sp{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:.4em .7em;display:grid;gap:.25em;align-content:start}
+.sp .ph{font-weight:600}
+.row{display:flex;gap:.4em;flex-wrap:wrap;align-items:center}
+.chip{background:var(--bg);border:2px solid var(--line);border-radius:999px;padding:.08em .75em;font-size:.68em;font-weight:600}
+.chip.ok{background:var(--oli);border-color:var(--oli);color:#fff}
+.chip.no{background:var(--ter-soft);border-color:var(--ter);color:var(--ter)}
+.sp .why{font-size:.7em;color:var(--mute);flex:1;min-width:10em}
+.sp .alt{font-size:.75em;color:var(--oli);font-weight:600}
+.sp.done{border-color:var(--oli)}
+
+/* task cards with reveal */
+.tasks{display:grid;gap:.45em}
+.tk{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:.4em .75em;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.15em .7em;align-items:center}
+.tk .ask{font-weight:600}
+.tk .ans{grid-column:1/-1;color:var(--oli);font-size:.86em}
+.tk .btn{align-self:center}
+.frame3{display:flex;gap:.4em;flex-wrap:wrap;align-items:center;justify-content:flex-start}
+.frame3 span{background:var(--tau-soft);border-radius:999px;padding:.15em .75em;font-size:.86em}
+.frame3 b{color:var(--tau)}
+.trig{display:flex;gap:.5em;flex-wrap:wrap}
+.trig span{display:inline-flex;gap:.35em;align-items:center;background:var(--ter-soft);color:var(--ink);border-radius:999px;padding:.15em .75em;font-size:.86em}
+.trig svg{color:var(--ter)}
+
+/* toolbox */
+.tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5em}
+.tool{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:.5em .8em;display:grid;gap:.25em;align-content:start}
+.tool b{color:var(--tau);font-size:.92em}
+.tool span{font-size:.86em}
+
+/* ladder */
+.ladder{display:grid;gap:.45em}
+.ld{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:.4em .75em;display:grid;gap:.2em}
+.ld .sharp{display:flex;gap:.45em;align-items:center;font-weight:700}
+.ld .sharp svg{color:var(--ter)}
+.ld .step{display:flex;gap:.5em;align-items:baseline;font-size:.86em}
+.ld .step i{font-style:normal;font-size:.75em;font-weight:700;color:#fff;background:var(--oli);border-radius:999px;padding:0 .5em;flex:none}
+
+/* posture */
+.posture{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.45em}
+.pst{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:.35em .7em;display:grid;gap:.2em}
+.pst.done{border-color:var(--oli)}
+
+/* techniques */
+.tech{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.45em}
+.tq{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:.45em .7em;text-align:left;display:flex;gap:.45em;align-items:baseline;transition:background .2s,border-color .2s}
+.tq .n{font-family:var(--serif);color:var(--tau);font-size:1.25em;line-height:1}
+.tq b{font-size:.9em}
+.tq.on{background:var(--tau);border-color:var(--tau);color:#fff}
+.tq.on .n{color:#fff}
+.tq.seen:not(.on){border-color:var(--tau)}
+.tdet{background:var(--oli-soft);border-radius:18px;padding:.55em .9em;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.35em 1em;min-height:6.2em}
+.tdet div{display:grid;gap:.05em}
+.tdet .k{font-size:.58em;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--oli)}
+.tdet .v{font-size:.88em}
+.tdet .empty{grid-column:1/-1;color:var(--mute);align-self:center}
+
+/* matching with lines */
+.match{position:relative;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:.4em 14%}
+.match svg.lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.match .col{display:grid;gap:.4em;align-content:start}
+.mi{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:.3em .65em;text-align:left;font-size:.8em;line-height:1.3;transition:border-color .2s,background .2s}
+.mi.sel{border-color:var(--tau);background:var(--tau-soft)}
+.mi.done{border-color:var(--oli);background:var(--oli-soft);cursor:default}
+.mi.shake{border-color:var(--ter);background:var(--ter-soft)}
+
+/* dialogue */
+.dlg{display:grid;gap:.45em}
+.line{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:.45em .8em}
+.line .who{font-size:.6em;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--tau);display:block}
+.seg{background:none;border:0;padding:0;font:inherit;text-align:left;border-radius:6px;transition:background .2s}
+.seg:hover{background:var(--tau-soft)}
+.seg.hit{background:var(--ter-soft);color:var(--ter);text-decoration:line-through}
+.seg.miss{background:var(--tint)}
+.fix{color:var(--oli);font-weight:600;font-size:.86em}
+
+/* checklist chips for role-play */
+.check{display:flex;flex-wrap:wrap;gap:.4em}
+.ck{background:var(--card);border:2px solid var(--line);border-radius:999px;padding:.12em .8em;font-size:.75em;font-weight:600;display:inline-flex;gap:.35em;align-items:center}
+.ck svg{display:none}
+.ck.on{background:var(--oli);border-color:var(--oli);color:#fff}
+.ck.on svg{display:inline}
+
+[contenteditable]{min-height:5em;background:var(--card);border:2px dashed var(--line);border-radius:16px;padding:.5em .8em;outline:0}
+.fb-h{display:flex;gap:.4em;align-items:center;font-size:.6em;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.3em}
+
+@media (max-width:860px){
+  .g3,.g4,.tools,.tech,.posture{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .frames{grid-template-columns:1fr}
+  .spot{grid-template-columns:1fr}
+}
+@media (max-width:540px){
+  .g2,.g3,.g4,.tools,.tech,.posture,.tdet{grid-template-columns:1fr}
+  .match{grid-template-columns:1fr 1fr;gap:.4em 10%}
+  .scr{min-height:auto;padding:28px 16px}
+  .top .where{display:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4zM14 6l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3L5 13.5h6L10 21l8-10.5h-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="top"><span>Conflict Management · Lesson 2</span><div class="bar"><i id="pb"></i></div><span class="where" id="where"></span></div>
+
+<!-- 1 GOAL -->
+<section class="scr" data-stage="Goal">
+  <span class="tag">English for Retail Leadership · Lesson 2</span>
+  <h1>The Resolution <em>Playbook</em></h1>
+  <p class="lead">By the end of today you can:</p>
+  <div class="grid">
+    <div class="c">1 · Say “no” and give feedback in a soft, polite way</div>
+    <div class="c">2 · Explain store rules to customers and to your team without starting a fight</div>
+    <div class="c">3 · Solve a conflict in 5 steps, with a customer or with a colleague</div>
+  </div>
+</section>
+
+<!-- 2 WARM-UP -->
+<section class="scr" data-stage="Warm-up">
+  <span class="tag">Warm-up</span>
+  <h2>Your week in the store</h2>
+  <div class="grid g3">
+    <div class="c tau"><b>A hectic moment</b><small>When was the store really hectic this week? What happened?</small></div>
+    <div class="c oli"><b>Taken aback</b><small>Were you taken aback by something a customer or a colleague said?</small></div>
+    <div class="c ter"><b>Offended</b><small>Did anybody get offended? Why? What did you do?</small></div>
+  </div>
+  <div class="c soft"><b>Remember from Lesson 1</b><small>3 types: interest · misunderstanding · interpersonal &nbsp;·&nbsp; 5 styles: competing · collaborating · compromising · avoiding · accommodating</small></div>
+</section>
+
+<!-- PART 1 -->
+<!-- 3 WHY DO CONFLICTS START -->
+<section class="scr" data-stage="Why conflicts start">
+  <span class="part">Part 1 · Where conflicts come from</span>
+  <h2>Why do conflicts start?</h2>
+  <div class="grid g3">
+    <div class="c tau">What usually starts a conflict with <b>customers</b> in your store?</div>
+    <div class="c oli">And with your <b>team</b>?</div>
+    <div class="c ter">Is it the problem itself, or the <b>words</b> people use?</div>
+  </div>
+  <button type="button" class="btn" data-reveal="#causes">Show common reasons</button>
+  <div class="grid g3 rv off" id="causes">
+    <button type="button" class="mark"><b><svg class="ic chk"><use href="#i-ok"/></svg> Rules vs. wishes</b><small>The customer wants one thing, the store rules say another.</small></button>
+    <button type="button" class="mark"><b><svg class="ic chk"><use href="#i-ok"/></svg> Busy and tired</b><small>Long queues, a hectic day, no break.</small></button>
+    <button type="button" class="mark"><b><svg class="ic chk"><use href="#i-ok"/></svg> Misunderstanding</b><small>People hear something different from what you mean.</small></button>
+    <button type="button" class="mark"><b><svg class="ic chk"><use href="#i-ok"/></svg> Tone and sharp words</b><small>“No.” “Impossible.” A cold face.</small></button>
+    <button type="button" class="mark"><b><svg class="ic chk"><use href="#i-ok"/></svg> Not feeling heard</b><small>Nobody listens or asks.</small></button>
+    <button type="button" class="mark"><b><svg class="ic chk"><use href="#i-ok"/></svg> Broken promises</b><small>“I’m sure it’s fine”, and then it isn’t.</small></button>
+  </div>
+  <p class="q rv off" id="causesQ">Tap the reasons that happen in your store. Which one is the most common?</p>
+</section>
+
+<!-- 4 WHEN DID IT START -->
+<section class="scr" data-stage="When did it start?">
+  <span class="tag">Read the story · tap the moment</span>
+  <h2>When did the conflict start?</h2>
+  <div class="frames" id="frames">
+    <button type="button" class="frame" data-k="0"><span class="t">1 · Saturday, 4 pm</span>A customer brings back a scented candle. It has been lit. She says: <span class="say">“I bought the wrong scent. I wanted vanilla, not fig.”</span></button>
+    <button type="button" class="frame" data-k="1"><span class="t">2 · The sales assistant</span>Smiling: <span class="say">“Oh, I’m sure it’s fine. Let me ask my manager.”</span> She goes to the stockroom. The customer waits at the till for ten minutes.</button>
+    <button type="button" class="frame" data-k="2"><span class="t">3 · The manager</span><span class="say">“I’m sorry, we can’t take back candles that have been used.”</span> The customer: <span class="say">“But she said it was fine! I’ve been waiting for ten minutes!”</span></button>
+  </div>
+  <div class="grid g2 rv off" id="frameNote">
+    <div class="c soft"><b>There is no single answer.</b><small>Many people choose frame 3, where the shouting starts. But the problem began in frame 2: a promise the assistant could not keep, and a long wait with no information.</small></div>
+    <div class="c your"><b>Discuss</b><small>Was it fair to ask for a refund? What should the assistant say in frame 2? What would you say to the customer now?</small></div>
+  </div>
+</section>
+
+<!-- 5 FORMULA -->
+<section class="scr" data-stage="The conflict formula">
+  <span class="tag">How a conflict grows</span>
+  <h2>The conflict formula</h2>
+  <div class="formula">
+    <div class="box">a real problem<small>a used candle, a store rule</small></div>
+    <span class="op">+</span>
+    <div class="box hot">sharp words or actions<small>a broken promise, “No, impossible”</small></div>
+    <span class="op">=</span>
+    <div class="box">conflict</div>
+  </div>
+  <p class="q" style="text-align:center">One sharp word rarely starts a fight. A sharp word answered with another sharp word does.</p>
+  <div class="grid g3">
+    <div class="c tau"><span class="num">1</span><b>Don’t use sharp words.</b></div>
+    <div class="c oli"><span class="num">2</span><b>Don’t answer sharp words with sharp words.</b></div>
+    <div class="c ter"><span class="num">3</span><b>Calm the person and solve the real problem.</b><small>A smile is not enough: fix the situation too.</small></div>
+  </div>
+  <p class="q">In the candle story, what was the real problem? What were the sharp words or actions?</p>
+</section>
+
+<!-- 6 SPOT THE TRIGGER -->
+<section class="scr" data-stage="Spot the trigger">
+  <span class="tag">Your turn · sharp or calm? Then say it differently</span>
+  <h2>Spot the trigger</h2>
+  <div class="spot" id="spot"></div>
+</section>
+
+<!-- PART 2 -->
+<!-- 7 POLICY: CUSTOMERS -->
+<section class="scr" data-stage="Rules · customers">
+  <span class="part">Part 2 · Say it softly</span>
+  <h2>“It’s company policy”: customers</h2>
+  <div class="trig"><span><svg class="ic"><use href="#i-x"/></svg>“It’s company policy. There’s nothing I can do.”</span><span><svg class="ic"><use href="#i-x"/></svg>“I don’t make the rules.”</span><span><svg class="ic"><use href="#i-x"/></svg>“The system doesn’t allow it.”</span></div>
+  <div class="frame3"><b>Soft answer in 3 parts:</b><span>1 · “I completely understand…”</span><span>2 · “Our policy is…”</span><span>3 · “But what I can do is…”</span></div>
+  <div class="tasks" id="policyC"></div>
+</section>
+
+<!-- 8 POLICY: TEAM -->
+<section class="scr" data-stage="Rules · team">
+  <span class="tag">The same idea, with your team</span>
+  <h2>“Because I said so”: your team</h2>
+  <div class="trig"><span><svg class="ic"><use href="#i-x"/></svg>“Because I said so.”</span><span><svg class="ic"><use href="#i-x"/></svg>“That’s just how it is.”</span><span><svg class="ic"><use href="#i-x"/></svg>“Head office decided, not me.”</span></div>
+  <div class="frame3"><b>Soft answer in 3 parts:</b><span>1 · “I know this isn’t easy.”</span><span>2 · “Here’s why…”</span><span>3 · “Let’s…”</span></div>
+  <div class="tasks" id="policyT"></div>
+</section>
+
+<!-- 9 TOOLBOX -->
+<section class="scr" data-stage="Softening toolbox">
+  <span class="tag">Words that make it softer</span>
+  <h2>Your softening toolbox</h2>
+  <div class="tools">
+    <div class="tool"><b>A soft start</b><span>I’m afraid… · Unfortunately… · To be honest… · I see your point, but…</span></div>
+    <div class="tool"><b>A request, not an order</b><span>Could you…? · Would you mind …ing? · Would it be possible to…? · I was wondering if you could…</span></div>
+    <div class="tool"><b>Small softening words</b><span>a bit · slightly · not quite · maybe · I think · it seems</span></div>
+    <div class="tool"><b>Instead of “no”</b><span>That might be difficult. · I’m not sure that will work. · Let me see what I can do.</span></div>
+    <div class="tool"><b>“We”, not “you”</b><span>Let’s… · We need to… · It looks like the tags weren’t… (not “You didn’t…”)</span></div>
+    <div class="tool"><b>Thanks first, then the request</b><span>I really appreciate…, and next time could we…? · Thank you for…; one small thing:…</span></div>
+  </div>
+  <p class="q">Which of these do you already use? Which one will you try tomorrow?</p>
+</section>
+
+<!-- 10 LADDER -->
+<section class="scr" data-stage="Make it softer">
+  <span class="tag">Your turn · make it softer, step by step</span>
+  <h2>The softening ladder</h2>
+  <p class="q">Say each phrase in a softer way. Then tap “Softer”: each tap adds one more softening tool.</p>
+  <div class="ladder" id="ladder"></div>
+</section>
+
+<!-- PART 3 -->
+<!-- 11 FIVE STEPS -->
+<section class="scr" data-stage="5 steps">
+  <span class="part">Part 3 · Solve it step by step</span>
+  <h2>5 steps to solve a conflict with anyone</h2>
+  <p class="q">A customer, a sales assistant, your supervisor: the steps are the same.</p>
+  <div class="grid">
+    <div class="c head"><span class="num">1</span><b>Listen</b></div>
+    <div class="c head"><span class="num">2</span><b>Empathise and stay positive</b></div>
+    <div class="c head"><span class="num">3</span><b>Ask questions</b></div>
+    <div class="c head"><span class="num">4</span><b>Give a reasoned answer</b><small style="margin-left:.6em">explain why, and use a technique</small></div>
+    <div class="c head"><span class="num">5</span><b>Avoid triggers</b></div>
+  </div>
+  <p class="q">Which step do you usually skip when the store is hectic?</p>
+</section>
+
+<!-- 12 STEP 1 -->
+<section class="scr" data-stage="Step 1 · Listen">
+  <div class="head"><span class="num">1</span><h2>Listen</h2></div>
+  <div class="grid g3">
+    <div class="c tau"><b>Take a moment to think</b><small>Don’t answer straight away. Think about what you hear.</small><small class="say">“OK, I see.” · “Let me think about that for a second.”</small></div>
+    <div class="c oli"><b>Eye contact, open posture</b><small>Face the person, nod, keep your hands open.</small><small class="say">Your body says: “I’m here for you.”</small></div>
+    <div class="c ter"><b>Listen actively</b><small>Check, clarify, ask again.</small><small class="say">“So, if I understand correctly, …” · “Do you mean…?” · “Could you tell me a bit more about…?”</small></div>
+  </div>
+  <p class="tag" style="margin-top:.3em">Your turn · open or closed?</p>
+  <div class="posture" id="posture"></div>
+</section>
+
+<!-- 13 STEP 1 PRACTICE -->
+<section class="scr" data-stage="Step 1 · Your turn">
+  <div class="head"><span class="num">1</span><h2>Listen · your turn</h2></div>
+  <div class="complaint"><svg><use href="#i-quote"/></svg><p><span class="who">A customer</span>“I ordered a sofa cover online three weeks ago. You said ten days! Nobody answers the phone, and I have guests on Saturday.”</p></div>
+  <div class="complaint"><svg><use href="#i-quote"/></svg><p><span class="who">A sales assistant</span>“I always close the store. Every single week! Nobody else ever stays late.”</p></div>
+  <div class="c your"><b>Your turn</b>Repeat each problem in your own words. Start with “So, if I understand correctly, …” Then ask one question to clarify.</div>
+</section>
+
+<!-- 14 STEP 2 -->
+<section class="scr" data-stage="Step 2 · Empathise">
+  <div class="head"><span class="num">2</span><h2>Empathise and stay positive</h2></div>
+  <div class="grid g3">
+    <div class="c tau"><b>Apologise</b><small class="say">Customer: “I’m so sorry. I apologise on behalf of the company for the trouble.”</small><small class="say">Team: “I’m sorry, I didn’t know it was so hard for you.”</small></div>
+    <div class="c oli"><b>Stay positive</b><small class="say">Customer: “I’m sure we’ll find a solution.”</small><small class="say">Team: “We’ll sort this out together.”</small></div>
+    <div class="c ter"><b>Say their worry for them</b><small class="say">“I understand. When this happens to me, I don’t want excuses. I just want to know when it will be fixed.”</small></div>
+  </div>
+  <div class="complaint"><svg><use href="#i-quote"/></svg><p><span class="who">A customer</span>“I bought these towels as a present, and the colour is completely different from the photo. I’m so disappointed.”</p></div>
+  <div class="complaint"><svg><use href="#i-quote"/></svg><p><span class="who">A visual merchandiser</span>“I did the whole window alone last night, and nobody said a word.”</p></div>
+  <div class="c your"><b>Your turn</b>Answer each person with one phrase from each box.</div>
+</section>
+
+<!-- 15 STEP 3 -->
+<section class="scr" data-stage="Step 3 · Ask">
+  <div class="head"><span class="num">3</span><h2>Ask questions</h2></div>
+  <p class="q">Open questions (what, how, when) help people explain. Closed questions (yes / no) can sound like a test.</p>
+  <div class="grid g4">
+    <div class="c say">“What exactly happened?”</div>
+    <div class="c say">“When did you notice it?”</div>
+    <div class="c say">“How can we make this right?”</div>
+    <div class="c say">“What would make this easier for you?”</div>
+  </div>
+  <p class="tag" style="margin-top:.3em">Your turn · make the question open</p>
+  <div class="tasks" id="openQ"></div>
+</section>
+
+<!-- 16 STEP 4 TECHNIQUES -->
+<section class="scr" data-stage="Step 4 · Reasoned answer">
+  <div class="head"><span class="num">4</span><h2>Give a reasoned answer</h2></div>
+  <p class="q">Say what you can do and why. These 6 techniques help. Tap each one: first guess what you could say.</p>
+  <div class="tech" id="tech"></div>
+  <div class="tdet" id="tdet"><span class="empty">Choose a technique.</span></div>
+</section>
+
+<!-- 17 STEP 4 MATCHING -->
+<section class="scr" data-stage="Step 4 · Which technique?">
+  <div class="head"><span class="num">4</span><h2>Which technique would you use?</h2></div>
+  <p class="q">Tap a situation, then a technique. Then say your answer.</p>
+  <div class="match" id="match"><svg class="lines" id="lines"></svg><div class="col" id="mL"></div><div class="col" id="mR"></div></div>
+</section>
+
+<!-- 18 STEP 5 -->
+<section class="scr" data-stage="Step 5 · Avoid triggers">
+  <div class="head"><span class="num">5</span><h2>Avoid triggers</h2></div>
+  <div class="trig"><span><svg class="ic"><use href="#i-x"/></svg>argue, interrupt, rush, doubt their words</span><span><svg class="ic"><use href="#i-x"/></svg>“no”, “impossible”, “I don’t know”</span><span><svg class="ic"><use href="#i-x"/></svg>pass the problem to someone else</span><span><svg class="ic"><use href="#i-x"/></svg>promise what you can’t do</span></div>
+  <p class="tag" style="margin-top:.3em">Your turn · find 3 triggers in the manager’s answer</p>
+  <div class="dlg">
+    <div class="line"><span class="who">Customer</span>“I bought this table lamp last week, and it doesn’t work.”</div>
+    <div class="line" id="mgr"><span class="who">Manager</span></div>
+  </div>
+  <div class="tasks" id="fixes"></div>
+</section>
+
+<!-- 19 ROLE-PLAY CUSTOMERS -->
+<section class="scr" data-stage="Role-play · customers">
+  <span class="tag">Role-play · customers · you are the manager</span>
+  <h2>Play the scene</h2>
+  <div class="grid g2">
+    <div class="c"><b>Case 1 · Pyjamas</b>The seam came apart after the first wash. No receipt. The customer wants a cash refund.</div>
+    <div class="c"><b>Case 2 · Cracked vase</b>A vase cracked after a week. The customer is loud, and the queue is growing.</div>
+  </div>
+  <p class="tag">What did you use?</p>
+  <div class="check" data-check></div>
+</section>
+
+<!-- 20 ROLE-PLAY TEAM -->
+<section class="scr" data-stage="Role-play · team">
+  <span class="tag">Role-play · team · you are the manager</span>
+  <h2>Play the scene</h2>
+  <div class="grid g3">
+    <div class="c"><b>Case 3 · Weekend off</b>An assistant asks for Saturday and Sunday off. The rota is done, and you need staff.</div>
+    <div class="c"><b>Case 4 · Re-tagging</b>The night team re-tagged the prices badly. They were very tired. You need to give feedback.</div>
+    <div class="c"><b>Case 5 · Offended</b>You gave feedback to an assistant in front of the team. She was offended, and now she doesn’t talk to you.</div>
+  </div>
+  <p class="tag">What did you use?</p>
+  <div class="check" data-check></div>
+</section>
+
+<!-- 21 FEEDBACK -->
+<section class="scr" data-stage="Feedback">
+  <span class="tag">Feedback</span>
+  <h2>Let’s review</h2>
+  <div class="grid g2">
+    <div><p class="fb-h good"><svg class="ic"><use href="#i-ok"/></svg>Great phrases</p><div contenteditable></div></div>
+    <div><p class="fb-h bad"><svg class="ic"><use href="#i-pen"/></svg>Let’s fix</p><div contenteditable></div></div>
+  </div>
+</section>
+
+<!-- 22 WRAP-UP -->
+<section class="scr" data-stage="Wrap-up">
+  <span class="tag">Wrap-up</span>
+  <h2>Today in three lines</h2>
+  <div class="grid">
+    <div class="c">A real problem + sharp words = conflict. Don’t answer sharp words with sharp words.</div>
+    <div class="c">Rules: “I understand” → “our policy is” → “what I can do is”. With the team: “I know it isn’t easy” → “here’s why” → “let’s”.</div>
+    <div class="c">5 steps: listen · empathise · ask · give a reasoned answer · avoid triggers</div>
+  </div>
+  <div class="c your"><b>Homework: my phrasebook</b>Choose 6 phrases from today: 3 for customers and 3 for your team. Next to each one, write a real situation from your store where you could say it.</div>
+</section>
+
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>s;
+
+/* generic reveal */
+document.querySelectorAll('[data-reveal]').forEach(btn=>btn.onclick=()=>{
+  const box=document.querySelector(btn.dataset.reveal);box.classList.remove('off');
+  const after=box.nextElementSibling;if(after&&after.classList.contains('rv'))after.classList.remove('off');
+  btn.disabled=true;
+});
+document.querySelectorAll('.mark').forEach(m=>m.onclick=()=>m.classList.toggle('on'));
+
+/* story */
+document.querySelectorAll('#frames .frame').forEach(f=>f.onclick=()=>{
+  document.querySelectorAll('#frames .frame').forEach(x=>x.classList.remove('pick','key'));
+  f.classList.add('pick');document.querySelector('#frames [data-k="1"]').classList.add('key');
+  $('#frameNote').classList.remove('off');
+});
+
+/* task with reveal */
+function taskList(el,items,label){
+  items.forEach(([ask,ans])=>{
+    const d=document.createElement('div');d.className='tk';
+    d.innerHTML=`<span class="ask">${ask}</span><button type="button" class="btn">${label||'Show one way'}</button><span class="ans" hidden>${ans}</span>`;
+    d.querySelector('button').onclick=e=>{d.querySelector('.ans').hidden=false;e.target.disabled=true};
+    el.appendChild(d);
+  });
+}
+
+/* spot the trigger */
+const SP=[
+ ["“No, that’s impossible.”",1,"A closed door: the customer wants to fight it.","“That might be difficult, but let me see what I can do.”"],
+ ["“Let me check that for you.”",0,"You show you care and do something."],
+ ["“Calm down, please.”",1,"Nobody calms down when you tell them to.","“I can see this is really frustrating. Let’s sort it out together.”"],
+ ["“I’m sure we’ll find a solution.”",0,"Positive: the person feels safe."],
+ ["“There’s nothing I can do.”",1,"The person hears: “I don’t care.”","“Here’s what I can do for you: …”"],
+ ["“Are you sure you bought it here?”",1,"You doubt the customer’s words.","“Could you show me the receipt or the card you paid with?”"],
+ ["“Take your time, I’m listening.”",0,"The person feels heard."],
+ ["“Quickly, please, I have a queue.”",1,"You rush the person.","“I want to help you properly. Could you give me one minute to finish here?”"]];
+SP.forEach(([ph,a,why,alt])=>{
+  const d=document.createElement('div');d.className='sp';
+  d.innerHTML=`<span class="ph">${ph}</span><div class="row"><button type="button" class="chip" data-v="1">Trigger</button><button type="button" class="chip" data-v="0">Calm</button><span class="why" hidden>${why}</span></div>`+
+   (alt?`<div class="row" hidden data-alt><span class="why">How would you say it?</span><button type="button" class="chip">Show one way</button><span class="alt" hidden>${alt}</span></div>`:'');
+  d.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{
+    if(d.classList.contains('done'))return;
+    if(+b.dataset.v===a){b.classList.add('ok');d.classList.add('done');d.querySelector('.why').hidden=false;
+      const ar=d.querySelector('[data-alt]');if(ar){ar.hidden=false;ar.querySelector('button').onclick=()=>{ar.querySelectorAll('.why,button').forEach(x=>x.hidden=true);d.querySelector('.alt').hidden=false}}}
+    else b.classList.add('no');
+  });
+  $('#spot').appendChild(d);
+});
+
+/* policy */
+taskList($('#policyC'),[
+ ["“I lost the receipt, but I want my money back.”","“I completely understand. Without a receipt we can’t give a refund, but what I can do is an exchange or a store credit.”"],
+ ["“Can you keep this table for me until next week?”","“I’d love to help. Our policy is to hold items for one day only, but what I can do is check online stock and send you the link.”"],
+ ["“This cushion has a small mark. Give me 30% off.”","“I’m so sorry about the mark. We can’t change prices in the store, but what I can do is find you a perfect one or give you a full refund.”"],
+ ["“It’s cheaper online. Give me the online price.”","“I understand. Store and online prices are set separately, so I can’t change it here, but what I can do is help you order it online right now.”"]]);
+taskList($('#policyT'),[
+ ["“Why do we have to change the whole table again? We did it last week!”","“I know, it’s a lot of work. Here’s why: head office moved the new collection to the front because it sells better there. Let’s do it together before we open.”"],
+ ["“Why can’t I keep my phone in my pocket?”","“I know this isn’t easy. Here’s why: customers feel ignored when we look at our phones. Let’s keep phones in the stockroom; you can check yours on your break.”"],
+ ["“Why me again on the 26th?”","“I hear you, and I’m sorry. Let’s look at the rota together. If you work on the 26th, you can choose your day off next week.”"]]);
+
+/* ladder */
+const LD=[
+ ["The display is wrong.",["The display isn’t quite right.","I think the display isn’t quite right. Could we move the candles to the front?","Thank you for setting this up. I think it isn’t quite right yet. Could we try the candles at the front?"]],
+ ["Work faster.",["We need to be a bit faster.","We need to be a bit faster today. Could you start with the new delivery?","I know it’s a hectic day, and I really appreciate your help. Would you mind starting with the new delivery, so we finish on time?"]],
+ ["No, you can’t have Saturday off.",["Saturday might be difficult.","I’m afraid Saturday might be difficult. We’re very busy that day.","I’m afraid Saturday might be difficult, because we’re short of staff. Would Sunday work for you instead?"]],
+ ["Clean the stockroom now.",["Could you clean the stockroom?","Could you clean the stockroom before the delivery arrives?","I was wondering if you could clean the stockroom before the delivery. It would really help the team."]]];
+LD.forEach(([s,steps])=>{
+  const d=document.createElement('div');d.className='ld';let n=0;
+  d.innerHTML=`<div class="sharp"><svg class="ic"><use href="#i-bolt"/></svg>“${s}”<button type="button" class="btn" style="margin-left:auto">Softer</button></div>`;
+  const b=d.querySelector('button');
+  const st=document.createElement('div');st.className='step';st.hidden=true;d.appendChild(st);
+  b.onclick=()=>{st.hidden=false;st.innerHTML=`<i>${n+1} / ${steps.length}</i><span>“${steps[n]}”</span>`;n++;if(n>=steps.length)b.disabled=true};
+  $('#ladder').appendChild(d);
+});
+
+/* posture */
+[["Arms crossed",0],["Nodding",1],["Looking at your phone",0],["Facing the person",1],["Turned towards the till",0],["Eye contact",1]].forEach(([t,a])=>{
+  const d=document.createElement('div');d.className='pst';
+  d.innerHTML=`<span>${t}</span><div class="row"><button type="button" class="chip" data-v="1">Open</button><button type="button" class="chip" data-v="0">Closed</button></div>`;
+  d.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{if(d.classList.contains('done'))return;if(+b.dataset.v===a){b.classList.add('ok');d.classList.add('done')}else b.classList.add('no')});
+  $('#posture').appendChild(d);
+});
+
+/* open questions */
+taskList($('#openQ'),[
+ ["“Is it broken?”","“What exactly happened?”"],
+ ["“Are you unhappy with the rota?”","“What isn’t working for you in the rota?”"],
+ ["“Did you keep the receipt?”","“How did you pay for it?”"],
+ ["“Was your shift OK?”","“How was your shift? What was the hardest part?”"]],"Show an open question");
+
+/* techniques */
+const T=[
+ ["Join them: solve it together","You and the other person are on the same side, against the problem.","The person is upset but wants a solution.","“Let’s look at this together and find the best option.”","“Let’s sit down and plan this together.”"],
+ ["Explain your limits","Say clearly what you can’t decide, and then what you CAN do.","They ask for something outside your authority.","“This is outside my authority, but what I can do is…”","“I can’t change the head office deadline, but I can give you extra help on Friday.”"],
+ ["Offer two options","Give two clear choices. The person feels in control again.","You can’t give exactly what they want.","“We can exchange it, or I can give you a store credit. Which works better for you?”","“You can take Sunday off this week or next week. Which do you prefer?”"],
+ ["Ask for their advice","Ask what would help. People calm down when you ask their opinion.","You don’t know what the person really wants.","“What would be the best solution for you?”","“How would you organise the delivery to make it easier?”"],
+ ["Turn a limit into a benefit","Show how the rule also helps them.","They complain about a rule.","“We don’t take back used candles. That’s why every candle you buy here is new.”","“The new rota is strict, but it means everyone gets two full weekends a month.”"],
+ ["Move it to the past","Agree it was a problem, and show it is already fixed.","They complain about something that happened before.","“You’re right, that was a problem last month. We’ve changed our delivery procedure since then.”","“Yes, the last inventory was chaotic. This time we have a clear plan.”"]];
+T.forEach(([n,what,when,cus,team],k)=>{
+  const b=document.createElement('button');b.type='button';b.className='tq';
+  b.innerHTML=`<span class="n">${k+1}</span><b>${n}</b>`;
+  b.onclick=()=>{$('#tech').querySelectorAll('.tq').forEach(x=>x.classList.remove('on'));b.classList.add('on','seen');
+    $('#tdet').innerHTML=`<div><span class="k">What it means</span><span class="v">${what}</span></div><div><span class="k">When</span><span class="v">${when}</span></div><div><span class="k">With a customer</span><span class="v say">${cus}</span></div><div><span class="k">With your team</span><span class="v say">${team}</span></div>`};
+  $('#tech').appendChild(b);
+});
+
+/* matching with lines */
+const ML=[
+ ["A customer is angry about a late delivery last month.",5],
+ ["“Why can’t I return a used candle? That’s a stupid rule!”",4],
+ ["A customer says: “I don’t know what I want. Just do something!”",3],
+ ["An assistant can’t work on Saturday, and the rota is done.",2],
+ ["Head office wants the window changed by tomorrow. Your team says it’s too much.",1],
+ ["Two assistants argue about who restocks the shelves. Both want it fixed.",0]];
+const mL=$('#mL'),mR=$('#mR'),svg=$('#lines');let selL=null,selR=null;const done=[];
+ML.forEach(([t,a],i)=>{const b=document.createElement('button');b.type='button';b.className='mi';b.textContent=t;b.dataset.a=a;b.dataset.i=i;b.onclick=()=>pick('L',b);mL.appendChild(b)});
+T.forEach(([n],k)=>{const b=document.createElement('button');b.type='button';b.className='mi';b.textContent=(k+1)+' · '+n;b.dataset.k=k;b.onclick=()=>pick('R',b);mR.appendChild(b)});
+function pick(side,b){
+  if(b.classList.contains('done'))return;
+  if(side==='L'){if(selL)selL.classList.remove('sel');selL=b}else{if(selR)selR.classList.remove('sel');selR=b}
+  b.classList.add('sel');
+  if(selL&&selR){
+    const L=selL,R=selR;selL=selR=null;
+    if(+L.dataset.a===+R.dataset.k){L.classList.remove('sel');R.classList.remove('sel');L.classList.add('done');R.classList.add('done');done.push([L,R]);draw()}
+    else{[L,R].forEach(x=>{x.classList.remove('sel');x.classList.add('shake');setTimeout(()=>x.classList.remove('shake'),600)})}
+  }
+}
+function draw(){
+  const box=$('#match').getBoundingClientRect();svg.setAttribute('viewBox',`0 0 ${box.width} ${box.height}`);
+  svg.innerHTML=done.map(([L,R])=>{const a=L.getBoundingClientRect(),b=R.getBoundingClientRect();
+    const x1=a.right-box.left,y1=a.top+a.height/2-box.top,x2=b.left-box.left,y2=b.top+b.height/2-box.top,mx=(x1+x2)/2;
+    return `<path d="M${x1} ${y1} C${mx} ${y1} ${mx} ${y2} ${x2} ${y2}" fill="none" stroke="var(--oli)" stroke-width="3" stroke-linecap="round"/><circle cx="${x1}" cy="${y1}" r="5" fill="var(--oli)"/><circle cx="${x2}" cy="${y2}" r="5" fill="var(--oli)"/>`}).join('');
+}
+addEventListener('resize',draw);
+
+/* step 5: find triggers in a reply */
+const MG=[["“Hm. ",0],["Are you sure you plugged it in correctly? ",1,"“Could you show me what happens when you switch it on?”"],["OK, give me the receipt. ",0],["Quickly, please, there’s a queue. ",1,"“Thank you. I’ll check it right now.”"],["I don’t know if we can do anything, ",1,"“Let me see what I can do.”"],["but I’ll check.”",0]];
+let found=0;
+MG.forEach(([t,bad,fix])=>{const s=document.createElement('button');s.type='button';s.className='seg';s.textContent=t;
+  s.onclick=()=>{if(s.classList.contains('hit'))return;if(bad){s.classList.add('hit');found++;
+      const d=document.createElement('div');d.className='tk';d.innerHTML=`<span class="ask">Trigger ${found}: “${t.trim().replace(/[“”]/g,'')}”</span><button type="button" class="btn">Show a better way</button><span class="ans" hidden>${fix}</span>`;
+      d.querySelector('button').onclick=e=>{d.querySelector('.ans').hidden=false;e.target.disabled=true};$('#fixes').appendChild(d)}
+    else{s.classList.add('miss');setTimeout(()=>s.classList.remove('miss'),500)}};
+  $('#mgr').appendChild(s)});
+
+/* role-play checklists */
+document.querySelectorAll('[data-check]').forEach(el=>{
+  ["Listen","Empathise","Ask questions","A technique","A softening phrase","No triggers"].forEach(t=>{
+    const b=document.createElement('button');b.type='button';b.className='ck';b.innerHTML=`<svg class="ic"><use href="#i-ok"/></svg>${t}`;b.onclick=()=>b.classList.toggle('on');el.appendChild(b)});
+});
+
+/* progress */
+const S=[...document.querySelectorAll('.scr')];
+function upd(){
+  const max=document.documentElement.scrollHeight-innerHeight;
+  $('#pb').style.width=(max>0?scrollY/max*100:0)+'%';
+  let cur=S[0];for(const s of S){if(s.getBoundingClientRect().top<innerHeight*.4)cur=s}
+  $('#where').textContent=(S.indexOf(cur)+1)+' / '+S.length+' · '+cur.dataset.stage;
+}
+addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+</script>
+</body>
+</html>
