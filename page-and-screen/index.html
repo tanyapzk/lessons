@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Page &amp; Screen</title>
+<meta property="og:title" content="Page &amp; Screen: Spotlight Sentences">
+<meta property="og:description" content="Books, films and sentences that put the spotlight on what matters.">
+<meta property="og:image" content="https://tanyapzk.github.io/vocabulary-app/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Books meet films: ivory pages, library green, a warm orange spotlight. Shared on screen, so one light look and big type. */
+:root{
+  --page:#FBF7EF;--card:#FFFFFF;--ink:#1E1A17;--mut:#6A6159;--line:#E6DDCD;
+  --green:#1F5A45;--greensoft:#DCEBE3;--orange:#E2683C;--orangesoft:#FBE2D6;--gold:#F2C14E;--goldsoft:#FCF0CF;
+  --red:#B8323A;--redsoft:#F7DEDF;--ok:#1F7A4F;
+  --display:"DM Serif Display",Georgia,serif;--body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--page);color:var(--ink);font:400 clamp(18px,1.55vw,27px)/1.45 var(--body)}
+main{max-width:1360px;margin:auto;padding:0 clamp(16px,3.5vw,56px) 16vh}
+p{margin:0}
+button{font:inherit;color:inherit}
+
+/* hero */
+.hero{min-height:92vh;display:grid;grid-template-columns:1.1fr .9fr;gap:4vw;align-items:center;padding-block:6vh}
+@media (max-width:860px){.hero{grid-template-columns:1fr}}
+.kicker{font:700 .78em var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.hero h1{font:400 clamp(4rem,11vw,9.5rem)/.9 var(--display);margin:.15em 0 .25em;letter-spacing:-.01em}
+.hero h1 em{color:var(--green)}
+.hero .sub{color:var(--mut);max-width:30em}
+.stack{position:relative;height:min(62vh,520px)}
+.book,.ticket{position:absolute;border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}
+.book{left:6%;top:4%;width:52%;height:80%;background:var(--green);border-radius:6px 14px 14px 6px;color:var(--page);padding:1.2em 1em;transform:rotate(-6deg);display:flex;flex-direction:column;justify-content:space-between}
+.book::before{content:"";position:absolute;left:12px;top:0;bottom:0;width:4px;background:color-mix(in srgb,var(--page) 35%,transparent)}
+.book b{font:400 2em/1 var(--display);padding-left:.4em}
+.book small{font:700 .7em var(--mono);letter-spacing:.1em;padding-left:.6em}
+.ticket{right:4%;bottom:6%;width:56%;height:44%;background:var(--gold);border-radius:12px;transform:rotate(5deg);display:flex;flex-direction:column;justify-content:center;padding:0 1.2em;
+  -webkit-mask:radial-gradient(circle at 0 50%,transparent 16px,#000 17px) left/51% 100% no-repeat,radial-gradient(circle at 100% 50%,transparent 16px,#000 17px) right/51% 100% no-repeat;
+          mask:radial-gradient(circle at 0 50%,transparent 16px,#000 17px) left/51% 100% no-repeat,radial-gradient(circle at 100% 50%,transparent 16px,#000 17px) right/51% 100% no-repeat}
+.ticket b{font:400 2.1em/1 var(--display)}
+.ticket small{font:700 .7em var(--mono);letter-spacing:.1em}
+
+/* chapters */
+.ch{padding-top:10vh;scroll-margin-top:2vh}
+.ch-head{display:flex;align-items:center;gap:.7em;margin-bottom:.2em}
+.ch-head .num{width:2.2em;height:2.2em;border-radius:50%;background:var(--green);color:var(--page);display:grid;place-items:center;font:700 .85em var(--mono);flex:none}
+.ch-head .lab{font:700 .78em var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+h2{font:400 clamp(2.6rem,5.4vw,4.6rem)/1 var(--display);margin:.1em 0 .35em}
+h2 em{color:var(--orange)}
+.task{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:.55em 1em;max-width:60em;margin-bottom:1em;display:flex;gap:.7em;align-items:flex-start}
+.task .t{font:700 .72em var(--mono);letter-spacing:.1em;background:var(--orange);color:#fff;border-radius:6px;padding:.25em .55em;flex:none;margin-top:.2em}
+.think{display:flex;gap:.7em;align-items:flex-start;background:var(--greensoft);color:var(--green);border-radius:14px;padding:.65em 1em;max-width:60em;margin-top:1.1em;font-weight:600}
+.think svg{flex:none;margin-top:.15em}
+
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--min,320px)),1fr))}
+.card{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:.7em 1em;display:flex;flex-direction:column;gap:.45em}
+.rv{align-self:flex-start;background:transparent;border:2px dashed var(--mut);border-radius:999px;padding:.08em .8em;font-size:.76em;font-weight:700;color:var(--mut);cursor:pointer}
+.rv:hover{border-color:var(--orange);color:var(--orange)}
+.ans{color:var(--ok);font-weight:700}
+.ans[hidden]{display:none}
+.q-n{font:700 .8em var(--mono);color:var(--orange);margin-right:.45em}
+
+/* warm-up */
+.prompt{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:.8em 1.1em;display:flex;flex-direction:column;gap:.35em}
+.prompt .q{font-weight:700;font-size:1.05em}
+.prompt .st{font-family:var(--mono);font-size:.82em;color:var(--green);font-weight:700;background:var(--greensoft);border-radius:8px;padding:.15em .55em;align-self:flex-start}
+
+/* patterns recap */
+.pat{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:.75em 1em;display:flex;flex-direction:column;gap:.4em;border-top:10px solid var(--c)}
+.pat h4{margin:0;font:400 1.5em/1 var(--display)}
+.pat .f{font:700 .74em/1.5 var(--mono);background:var(--page);border-radius:8px;padding:.3em .55em}
+.pat .f i{font-style:normal;color:var(--orange)}
+.pat .e{font-size:.92em}
+.pat .e b{background:var(--goldsoft);font-weight:700}
+.rules{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin-top:14px}
+.rule{display:flex;gap:.6em;align-items:center;border-radius:12px;padding:.45em .85em;font-weight:600;font-size:.9em}
+.rule.no{background:var(--redsoft);color:var(--red)}
+.rule.no span{text-decoration:line-through;text-decoration-thickness:2px}
+.rule.yes{background:var(--greensoft);color:var(--ok)}
+.rule svg{flex:none}
+
+/* fix */
+.wrong{display:flex;gap:.5em;align-items:flex-start}
+.wrong svg{flex:none;margin-top:.25em;color:var(--red)}
+
+/* focus drill */
+.base{font:400 1.35em/1.2 var(--display);background:var(--goldsoft);border-radius:12px;padding:.45em .7em}
+.fq{display:flex;flex-wrap:wrap;gap:.4em .8em;align-items:center}
+.fq .w{font:700 .78em var(--mono);background:var(--green);color:var(--page);border-radius:6px;padding:.1em .5em}
+
+/* transform */
+.from{font-size:1em}
+.start{font:700 .85em var(--mono);color:var(--green)}
+
+/* quick fire */
+.qf{background:var(--green);color:var(--page);border-radius:14px;padding:.75em 1em;display:flex;flex-direction:column;gap:.35em;border:2px solid var(--ink)}
+.qf .q{font-weight:700}
+.qf .st{font:700 .8em var(--mono);color:var(--gold)}
+
+/* review phrases */
+.bank{display:grid;gap:10px;grid-template-columns:repeat(5,minmax(0,1fr));margin-bottom:1em}
+@media (max-width:1000px){.bank{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
+.grp{background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:.45em .7em;border-top:8px solid var(--c)}
+.grp h4{margin:0 0 .2em;font:700 .72em var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.grp p{font-size:.8em;line-height:1.35}
+.use{font:700 .8em var(--mono);color:var(--orange)}
+
+/* one minute */
+.minute{display:grid;grid-template-columns:1.25fr .75fr;gap:20px;align-items:start}
+@media (max-width:900px){.minute{grid-template-columns:1fr}}
+.choose{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.choose div{border:2px solid var(--ink);border-radius:14px;padding:.6em .9em;background:var(--card)}
+.choose b{font:400 1.4em var(--display);display:block}
+.choose span{font-size:.85em;color:var(--mut)}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:700 .78em var(--mono)}
+.flow span{background:var(--goldsoft);border:2px solid var(--ink);border-radius:8px;padding:.1em .5em}
+.checklist{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:.75em 1em;display:flex;flex-direction:column;gap:.45em}
+.checklist h4{margin:0;font:400 1.5em var(--display)}
+.ck{display:flex;gap:.6em;align-items:flex-start;text-align:left;background:transparent;border:0;padding:.15em 0;cursor:pointer}
+.ck .box{width:1.25em;height:1.25em;border:2px solid var(--ink);border-radius:5px;flex:none;margin-top:.15em;display:grid;place-items:center;background:var(--card)}
+.ck .box svg{opacity:0}
+.ck.on .box{background:var(--ok);border-color:var(--ok);color:#fff}
+.ck.on .box svg{opacity:1}
+.model{background:var(--card);border:2px dashed var(--mut);border-radius:14px;padding:.75em 1em;font-size:.9em;margin-top:12px}
+.model[hidden]{display:none}
+
+/* hot takes */
+.reacts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1em}
+.reacts span{background:var(--card);border:2px solid var(--ink);border-radius:999px;padding:.05em .8em;font-size:.85em;font-weight:700}
+.take{background:var(--orange);color:#fff;border:2px solid var(--ink);border-radius:14px;padding:.8em 1em;font:400 1.4em/1.15 var(--display);box-shadow:5px 5px 0 var(--ink)}
+.take small{display:block;font:700 .5em var(--mono);letter-spacing:.1em;opacity:.85;margin-bottom:.3em}
+
+/* casting */
+.roles{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr))}
+.role{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:.6em .9em;display:flex;flex-direction:column;gap:.4em}
+.role p{font-weight:700;font-size:.95em}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,140px));gap:12px}
+.trio figure{margin:0;display:flex;flex-direction:column;gap:.25em}
+.trio img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 20%;border-radius:10px;border:2px solid var(--ink);display:block;background:var(--line)}
+.trio figcaption{font:500 .62em/1.2 var(--mono);text-align:center}
+
+.end{text-align:center;padding-top:14vh}
+.end p{font:400 clamp(3rem,9vw,7rem)/1 var(--display)}
+.end p em{color:var(--green)}
+button:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+
+<header class="hero">
+  <div>
+    <p class="kicker">Books · Films · Spotlight sentences</p>
+    <h1>Page <em>&amp;</em><br>Screen</h1>
+    <p class="sub">What I want today is simple: lots of practice with spotlight sentences, a review that sounds like a critic, and a few hot takes about books and films.</p>
+  </div>
+  <div class="stack" aria-hidden="true">
+    <div class="book"><small>CHAPTER ONE</small><b>What I loved was…</b><small>A NOVEL</small></div>
+    <div class="ticket"><small>ADMIT ONE</small><b>It was the ending that…</b></div>
+  </div>
+</header>
+
+<!-- 1 -->
+<section class="ch" id="c1">
+  <div class="ch-head"><span class="num">01</span><span class="lab">Warm-up</span></div>
+  <h2>Spotlight on <em>your week</em></h2>
+  <div class="task"><span class="t">TASK</span><p>Answer each question. Start with the words in green, then add one more sentence.</p></div>
+  <div class="grid" style="--min:360px">
+    <div class="prompt"><p class="q">What was the best part of your week?</p><p class="st">The best part of my week was…</p></div>
+    <div class="prompt"><p class="q">What annoyed you this week?</p><p class="st">What annoyed me was…</p></div>
+    <div class="prompt"><p class="q">What are you reading or watching at the moment?</p><p class="st">What I'm reading / watching at the moment is…</p></div>
+    <div class="prompt"><p class="q">What do you want to do this weekend?</p><p class="st">All I want to do this weekend is…</p></div>
+  </div>
+  <div class="think"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.5 19h5M10.5 22h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><p>Which beginning felt natural? Which one felt strange?</p></div>
+</section>
+
+<!-- 2 -->
+<section class="ch" id="c2">
+  <div class="ch-head"><span class="num">02</span><span class="lab">Remember the patterns</span></div>
+  <h2>Four ways to <em>spotlight</em></h2>
+  <div class="grid" style="--min:280px">
+    <div class="pat" style="--c:var(--green)"><h4>What…</h4><p class="f">What + I + verb + <i>is / was</i> + focus</p><p class="e"><b>What I loved was</b> the narrator's voice.</p><p class="e"><b>What surprised me was</b> how short it felt.</p></div>
+    <div class="pat" style="--c:var(--orange)"><h4>It is / It was…</h4><p class="f"><i>It is / was</i> + focus + <i>that / who</i> + rest</p><p class="e"><b>It was the last chapter that</b> made me cry.</p><p class="e"><b>It's the detective who</b> steals the show.</p></div>
+    <div class="pat" style="--c:var(--gold)"><h4>The thing / reason…</h4><p class="f"><i>The thing that / The reason I</i> … + <i>is / was</i></p><p class="e"><b>The thing that annoyed me was</b> the ending.</p><p class="e"><b>The reason I read it was</b> the cover.</p></div>
+    <div class="pat" style="--c:#7A4FB0"><h4>All…</h4><p class="f"><i>All</i> + I + verb + <i>is / was</i> + focus</p><p class="e"><b>All I wanted was</b> a happy ending.</p><p class="e"><b>All I need is</b> a good book and tea.</p></div>
+  </div>
+  <div class="rules">
+    <div class="rule no"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><span>What I loved it was…</span></div>
+    <div class="rule no"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><span>It was the ending what…</span></div>
+    <div class="rule no"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><span>All what I wanted…</span></div>
+  </div>
+  <div class="think"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.5 19h5M10.5 22h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><p>Why do we need “that” or “who” in the It-pattern, but not in the What-pattern?</p></div>
+</section>
+
+<!-- 3 -->
+<section class="ch" id="c3">
+  <div class="ch-head"><span class="num">03</span><span class="lab">Fix it</span></div>
+  <h2>Something's <em>wrong</em></h2>
+  <div class="task"><span class="t">TASK</span><p>Each sentence has one mistake. Say the correct sentence.</p></div>
+  <div class="grid" style="--min:400px" id="fix"></div>
+</section>
+
+<!-- 4 -->
+<section class="ch" id="c4">
+  <div class="ch-head"><span class="num">04</span><span class="lab">Choose the focus</span></div>
+  <h2>Who, what or <em>when?</em></h2>
+  <div class="task"><span class="t">TASK</span><p>One sentence, different questions. Answer each question with <b>It was … that / who…</b> and put the answer in the spotlight.</p></div>
+  <div class="grid" style="--min:400px" id="focus"></div>
+</section>
+
+<!-- 5 -->
+<section class="ch" id="c5">
+  <div class="ch-head"><span class="num">05</span><span class="lab">Spotlight it</span></div>
+  <h2>Books <em>&amp;</em> films</h2>
+  <div class="task"><span class="t">TASK</span><p>Say each sentence again with the beginning in green. Keep the same meaning.</p></div>
+  <div class="grid" style="--min:400px" id="trs"></div>
+</section>
+
+<!-- 6 -->
+<section class="ch" id="c6">
+  <div class="ch-head"><span class="num">06</span><span class="lab">Fake facts</span></div>
+  <h2>No, it <em>was…</em></h2>
+  <div class="task"><span class="t">TASK</span><p>Every fact is wrong. Correct it: <b>No, it wasn't… It was… who / that…</b></p></div>
+  <div class="grid" style="--min:400px" id="facts"></div>
+</section>
+
+<!-- 7 -->
+<section class="ch" id="c7">
+  <div class="ch-head"><span class="num">07</span><span class="lab">Quick fire</span></div>
+  <h2>Answer with a <em>spotlight</em></h2>
+  <div class="task"><span class="t">TASK</span><p>Answer fast. Start with the words in yellow, then add a reason or an example.</p></div>
+  <div class="grid" style="--min:380px">
+    <div class="qf"><p class="q">What makes a book hard to put down?</p><p class="st">What makes a book hard to put down is…</p></div>
+    <div class="qf"><p class="q">What's the best thing about reading in English?</p><p class="st">What I like most about reading in English is…</p></div>
+    <div class="qf"><p class="q">Who is your favourite character in Five Survive so far?</p><p class="st">It's … who…</p></div>
+    <div class="qf"><p class="q">What annoys you about films based on books?</p><p class="st">The thing that annoys me is…</p></div>
+    <div class="qf"><p class="q">What do you do when a book is boring?</p><p class="st">What I usually do is…</p></div>
+    <div class="qf"><p class="q">Why do you choose a book or a film?</p><p class="st">The reason I usually choose… is…</p></div>
+    <div class="qf"><p class="q">What do you need for a perfect movie night?</p><p class="st">All I need is…</p></div>
+    <div class="qf"><p class="q">Which film or book made you cry?</p><p class="st">It was … that made me cry.</p></div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="ch" id="c8">
+  <div class="ch-head"><span class="num">08</span><span class="lab">Sound like a critic</span></div>
+  <h2>Make it a <em>review</em></h2>
+  <div class="task"><span class="t">TASK</span><p>Make each plain sentence sound like a review. Use the phrase in orange.</p></div>
+  <div class="bank">
+    <div class="grp" style="--c:var(--green)"><h4>Starting</h4><p>Without spoiling anything…<br>It's the kind of book / film that…</p></div>
+    <div class="grp" style="--c:var(--orange)"><h4>Opinion</h4><p>In my view…<br>What struck me was…<br>I was blown away by…</p></div>
+    <div class="grp" style="--c:#7A4FB0"><h4>Contrast</h4><p>Having said that…<br>On the one hand… on the other hand…<br>Even though…</p></div>
+    <div class="grp" style="--c:var(--gold)"><h4>Feelings about events</h4><p>Sadly, / Unfortunately,<br>Surprisingly, / Thankfully,<br>Predictably,</p></div>
+    <div class="grp" style="--c:var(--red)"><h4>Finishing</h4><p>In the end… / All in all…<br>Looking back…<br>I'd recommend it if…</p></div>
+  </div>
+  <div class="grid" style="--min:290px" id="rev"></div>
+</section>
+
+<!-- 9 -->
+<section class="ch" id="c9">
+  <div class="ch-head"><span class="num">09</span><span class="lab">Speak</span></div>
+  <h2>One minute, <em>no spoilers</em></h2>
+  <div class="task"><span class="t">TASK</span><p>Choose a book OR a film. Talk for one minute. Start with <i>Without spoiling anything…</i> and finish with <i>I'd recommend it if…</i></p></div>
+  <div class="minute">
+    <div>
+      <div class="choose">
+        <div><b>A book</b><span>Five Survive (so far), or a book you loved</span></div>
+        <div><b>A film or series</b><span>your favourite, or the last one you watched</span></div>
+      </div>
+      <div class="flow"><span>Point</span>→<span>Reason</span>→<span>Example</span>→<span>Wrap-up</span></div>
+      <button class="rv" type="button" data-rv="model" style="margin-top:12px">Show an example</button>
+    </div>
+    <div class="checklist">
+      <h4>Did you use…</h4>
+      <button class="ck" type="button"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>a What… sentence</button>
+      <button class="ck" type="button"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>an It was… that / who sentence</button>
+      <button class="ck" type="button"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>a contrast phrase</button>
+      <button class="ck" type="button"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Sadly, / Surprisingly, / Thankfully,</button>
+      <button class="ck" type="button"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>no spoilers!</button>
+    </div>
+  </div>
+  <p class="model" id="model" hidden>Without spoiling anything, it's the kind of book that you finish in two evenings. What I loved was the main character: she's clever but not perfect. It was the short chapters that kept me reading late at night. Having said that, the middle part is a bit slow. Surprisingly, the ending made me laugh, not cry. All in all, I'd recommend it if you like mysteries with lots of twists.</p>
+</section>
+
+<!-- 10 -->
+<section class="ch" id="c10">
+  <div class="ch-head"><span class="num">10</span><span class="lab">React</span></div>
+  <h2>Hot <em>takes</em></h2>
+  <div class="task"><span class="t">TASK</span><p>React first, then explain with a spotlight sentence: <i>No way! What makes a book special is…</i></p></div>
+  <div class="reacts"><span>I couldn't agree more.</span><span>Tell me about it!</span><span>Fair enough.</span><span>I see your point, but…</span><span>It depends.</span><span>I'm not so sure.</span><span>No way!</span></div>
+  <div class="grid" style="--min:380px">
+    <p class="take"><small>BOOKS VS FILMS</small>The book is always better than the film.</p>
+    <p class="take"><small>BOOKS</small>Listening to an audiobook is real reading.</p>
+    <p class="take"><small>BOOKS</small>It's OK to read the last page first.</p>
+    <p class="take"><small>BOTH</small>Spoilers don't really ruin anything.</p>
+    <p class="take"><small>FILMS</small>Series are better than films these days.</p>
+    <p class="take"><small>BOOKS</small>You should finish every book you start.</p>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="ch" id="c11">
+  <div class="ch-head"><span class="num">11</span><span class="lab">Just chat</span></div>
+  <h2>Casting <em>director</em></h2>
+  <div class="task"><span class="t">TASK</span><p>Choose the best actor for each role and explain: <i>It's … who…</i> / <i>What makes her perfect is…</i> / <i>The reason I'd choose him is…</i></p></div>
+  <div class="roles" id="roles1"></div>
+</section>
+
+<section class="ch" id="c12">
+  <div class="ch-head"><span class="num">11</span><span class="lab">Just chat · more auditions</span></div>
+  <h2>More <em>auditions</em></h2>
+  <div class="task"><span class="t">TASK</span><p>Same again: who gets the role, and why? Use a spotlight sentence.</p></div>
+  <div class="roles" id="roles2"></div>
+</section>
+
+<section class="end"><p>The <em>end.</em></p></section>
+
+</main>
+<script>
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+var XS='<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
+var uid=0;
+function card(top,answer,btn){var id='a'+(uid++);return '<div class="card">'+top+'<button class="rv" type="button" data-rv="'+id+'">'+(btn||'Show')+'</button><p class="ans" id="'+id+'" hidden>'+answer+'</p></div>';}
+function fill(id,html){document.getElementById(id).innerHTML=html;}
+
+/* 3 fix */
+fill('fix',[
+ ["What I loved it was the soundtrack.","What I loved was the soundtrack."],
+ ["It was the ending what made me cry.","It was the ending that made me cry."],
+ ["All what I wanted was a happy ending.","All I wanted was a happy ending."],
+ ["The reason I read it, it was the cover.","The reason I read it was the cover."],
+ ["It was my friend which recommended this book.","It was my friend who recommended this book."],
+ ["What I didn't like was is the slow start.","What I didn't like was the slow start."],
+ ["The thing that annoyed me the main character.","The thing that annoyed me was the main character."],
+ ["Is the cast that makes this series special.","It's the cast that makes this series special."]
+].map(function(x,i){return card('<p class="wrong">'+XS+'<span><span class="q-n">'+(i+1)+'</span>'+esc(x[0])+'</span></p>',esc(x[1]),'Check');}).join(''));
+
+/* 4 focus */
+fill('focus',[
+ ["My sister gave me this book on my birthday.",[["Who gave it to you?","It was my sister who gave me this book."],["What did she give you?","It was this book that my sister gave me."],["When did she give it to you?","It was on my birthday that my sister gave me this book."]]],
+ ["I watched Inception at the cinema in 2010.",[["Which film?","It was Inception that I watched at the cinema."],["Where did you watch it?","It was at the cinema that I watched Inception."],["When?","It was in 2010 that I watched Inception."]]],
+ ["Holly Jackson wrote Five Survive.",[["Who wrote it?","It was Holly Jackson who wrote Five Survive."],["Which book did she write?","It was Five Survive that Holly Jackson wrote."]]],
+ ["The music made me cry in the final scene.",[["What made you cry?","It was the music that made me cry."],["When did you cry?","It was in the final scene that I cried."]]]
+].map(function(x){
+  var qs=x[1].map(function(q){var id='a'+(uid++);return '<div class="fq"><span class="w">'+esc(q[0])+'</span><button class="rv" type="button" data-rv="'+id+'">Show</button></div><p class="ans" id="'+id+'" hidden>'+esc(q[1])+'</p>';}).join('');
+  return '<div class="card"><p class="base">'+esc(x[0])+'</p>'+qs+'</div>';
+}).join(''));
+
+/* 5 transform */
+fill('trs',[
+ ["I love the dialogue in this series.","What I love…","What I love about this series is the dialogue."],
+ ["The last chapter made me cry.","It was…","It was the last chapter that made me cry."],
+ ["I started Five Survive because a friend recommended it.","The reason I…","The reason I started Five Survive was that a friend recommended it."],
+ ["The slow middle part annoyed me.","The thing that…","The thing that annoyed me was the slow middle part."],
+ ["I want a book I can't put down.","What I want…","What I want is a book I can't put down."],
+ ["The main character's mum steals the show.","It's…","It's the main character's mum who steals the show."],
+ ["I only need a cosy blanket and a good book.","All I…","All I need is a cosy blanket and a good book."],
+ ["I didn't expect the plot twist in chapter ten.","What I didn't expect…","What I didn't expect was the plot twist in chapter ten."]
+].map(function(x,i){return card('<p class="from"><span class="q-n">'+(i+1)+'</span>'+esc(x[0])+'</p><p class="start">'+esc(x[1])+'</p>',esc(x[2]),'Check');}).join(''));
+
+/* 6 facts */
+fill('facts',[
+ ["In Titanic, Jack survives and Rose dies.","No, it wasn't Jack who survived. It was Rose who survived."],
+ ["In Love Actually, Colin Firth plays the Prime Minister.","No, it wasn't Colin Firth. It was Hugh Grant who played the Prime Minister."],
+ ["In Harry Potter, Ron is the best student in the class.","No, it isn't Ron. It's Hermione who is the best student."],
+ ["Stephen King wrote the Harry Potter books.","No, it wasn't Stephen King. It was J.K. Rowling who wrote them."],
+ ["Sherlock Holmes's friend and helper is Dr Jones.","No, it isn't Dr Jones. It's Dr Watson who helps him."],
+ ["In Inception, people steal ideas from computers.","No, it isn't computers. It's dreams that they steal ideas from."],
+ ["Gandalf carries the Ring to Mordor.","No, it wasn't Gandalf. It was Frodo who carried the Ring."],
+ ["Home Alone happens in summer.","No, it wasn't in summer. It was at Christmas that Kevin was left home alone."]
+].map(function(x,i){return card('<p class="wrong">'+XS+'<span><span class="q-n">'+(i+1)+'</span>'+esc(x[0])+'</span></p>',esc(x[1]));}).join(''));
+
+/* 8 review */
+fill('rev',[
+ ["It's a thriller about a group of friends on a road trip.","Without spoiling anything…","Without spoiling anything, it's a thriller about a group of friends on a road trip."],
+ ["The acting is brilliant. The story is a bit slow.","Having said that…","The acting is brilliant. Having said that, the story is a bit slow."],
+ ["The book is very long. I enjoyed every page.","Even though…","Even though the book is very long, I enjoyed every page."],
+ ["The narrator's voice impressed me.","What struck me was…","What struck me was the narrator's voice."],
+ ["The dog doesn't survive.","Sadly, …","Sadly, the dog doesn't survive."],
+ ["The quiet neighbour is the killer.","Surprisingly, …","Surprisingly, the quiet neighbour turns out to be the killer."],
+ ["I didn't like the start. Now it's one of my favourites.","Looking back…","I didn't like the start, but looking back, it's one of my favourites."],
+ ["It's good for people who love mysteries.","I'd recommend it if…","I'd recommend it if you love mysteries."]
+].map(function(x,i){return card('<p class="from"><span class="q-n">'+(i+1)+'</span>'+esc(x[0])+'</p><p class="use">'+esc(x[1])+'</p>',esc(x[2]),'Model');}).join(''));
+
+/* 11 casting */
+var ROLES=[["A single mother of four fighting for the custody of her children",["Nicole Kidman","Naomi Watts","Jennifer Lopez"]],
+["A serial killer who works unlike anyone else",["Liam Neeson","Anthony Hopkins","Jack Nicholson"]],
+["A wicked witch who takes over a peaceful kingdom",["Angelina Jolie","Helena Bonham Carter","Emily Blunt"]],
+["A very bright, gifted child who is bullied at school",["Lindsay Lohan","Maisie Williams","Macaulay Culkin"]],
+["A rich, powerful businessman with a crisis in his family",["Leonardo DiCaprio","Chris Hemsworth","Tom Cruise"]],
+["An attractive, high-maintenance girl who nobody takes seriously",["Kate Hudson","Halle Berry","Reese Witherspoon"]],
+["A mad scientist whose AI is going to take over the world",["Steven Buscemi","Morgan Freeman","Matthew McConaughey"]]];
+function slug(n){return n.toLowerCase().replace(/[^a-z]+/g,'-').replace(/^-|-$/g,'');}
+function roleHtml(r){return '<div class="role"><p>'+esc(r[0])+'</p><div class="trio">'+r[1].map(function(n){return '<figure><img src="img/'+slug(n)+'.jpg" alt="'+esc(n)+'"><figcaption>'+esc(n)+'</figcaption></figure>';}).join('')+'</div></div>';}
+fill('roles1',ROLES.slice(0,4).map(roleHtml).join(''));
+fill('roles2',ROLES.slice(4).map(roleHtml).join(''));
+
+/* reveals + checklist */
+document.querySelectorAll('[data-rv]').forEach(function(b){
+  var label=b.textContent;
+  b.addEventListener('click',function(){var t=document.getElementById(b.dataset.rv);t.hidden=!t.hidden;b.textContent=t.hidden?label:'Hide';});
+});
+document.querySelectorAll('.ck').forEach(function(b){b.addEventListener('click',function(){b.classList.toggle('on');});});
+</script>
+</body>
+</html>
